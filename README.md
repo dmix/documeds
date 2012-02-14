@@ -5,6 +5,7 @@ An app for scraping medication data from a variety of sources around the interne
 That's the goal at least.
 
 Built with:
+
 - Clojure
 - Noir
 - Redis
@@ -17,6 +18,8 @@ Built with:
 lein deps
 lein run
 ```
+
+Also run Redis on localhost, default port with no password.
 
 ## License
 

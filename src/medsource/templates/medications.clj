@@ -15,7 +15,7 @@
       [:div#wrapper
         [:h1 "MediCounter"]
         content
-        [:a {:href "/medications"} "Index"]
+        [:a {:href "/"} "Index"]
         [:a {:href "/medication/new"} "New"]]]))
 
 (defpartial medication-index []
