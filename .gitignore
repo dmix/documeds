@@ -4,3 +4,4 @@ lib
 /lib/
 /classes/
 .lein-deps-sum
+src/documeds/settings.clj
