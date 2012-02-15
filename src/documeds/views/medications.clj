@@ -1,6 +1,6 @@
-(ns medsource.views.medications
-  (:require [medsource.models.medication :as medication]
-            [medsource.templates.medications :as t]
+(ns documeds.views.medications
+  (:require [documeds.models.medication :as medication]
+            [documeds.templates.medications :as t]
             [noir.response :as response])
   (:use noir.core
         hiccup.core

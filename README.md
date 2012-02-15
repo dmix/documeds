@@ -1,4 +1,4 @@
-# medsource
+# documeds
 
 An app for scraping medication data from a variety of sources around the internet, data mining to build structure and relationships between the data and publishing the content with JSON APIs. 
 

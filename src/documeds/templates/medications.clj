@@ -1,4 +1,4 @@
-(ns medsource.templates.medications
+(ns documeds.templates.medications
   (:require [noir.validation :as validation])
   (:use noir.core
         hiccup.core
@@ -8,7 +8,7 @@
 (defpartial layout [& content]
   (html5
     [:head
-      [:title "medsource"]
+      [:title "documeds"]
       (include-css "/css/reset.css")
       (include-css "/css/app.css")]
     [:body

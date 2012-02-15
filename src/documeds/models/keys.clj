@@ -1,4 +1,4 @@
-(ns medsource.models.keys)
+(ns documeds.models.keys)
 
 (defn key-medication [id]
   (str "medications:" id))

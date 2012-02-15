@@ -8,10 +8,10 @@
 ;
 ; (add! {"title" "Tylneol" "dosage" "10mg"})
 
-(ns medsource.models.medication
+(ns documeds.models.medication
     (:require [noir.validation :as validation])
     (:use aleph.redis
-          medsource.models.keys))
+          documeds.models.keys))
 
 (def r (redis-client {:host "localhost"}))
 
