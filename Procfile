@@ -1,1 +1,1 @@
-web: lein run -m documeds.server
+web: lein run

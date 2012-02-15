@@ -4,4 +4,7 @@
 (server/load-views "src/documeds/views/")
 
 (defn -main [& m]
-  (server/start (Integer. (get (System/getenv) "PORT")) {:mode :dev :ns 'documeds}))
+  (let [mode (or (first m) :dev)
+        port (Integer. (get (System/getenv) "PORT" "5000"))]
+    (server/start port {:mode (keyword mode)
+                        :ns 'qftk-site})))
