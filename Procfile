@@ -1,1 +1,1 @@
-web: lein run -m documeds.server $PORT
+web: lein run -m documeds.server
