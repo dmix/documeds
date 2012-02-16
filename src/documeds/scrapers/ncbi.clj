@@ -1,10 +1,10 @@
 (ns documeds.scrapers.ncbi
   (:use [net.cgrand.enlive-html :as html]
         net.cgrand.moustache
-        aleph.redis))
+        [aleph.redis :only (redis-client)]))
 
 (def letters (map char (concat (range 97 123))))
-(def r (redis-client {:host redis-url :password redis-pass :port redis-port}))
+(def r (delay (redis-client {:host redis-url :password redis-pass :port redis-port})))
 
 (defn info-url [url]
   (str "http://www.ncbi.nlm.nih.gov" url))
@@ -21,4 +21,4 @@
 (defn store-urls []
   (doseq [letter letters]
     (doseq [item (parse-urls letter)]
-      @(r [:sadd "medication-urls" ((item :attrs) :href)]))))
+      @(@r [:sadd "medication-urls" ((item :attrs) :href)]))))
