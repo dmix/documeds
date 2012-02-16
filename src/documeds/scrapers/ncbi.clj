@@ -23,3 +23,6 @@
   (doseq [letter letters]
     (doseq [item (parse-urls letter)]
       @(@r [:sadd "medication-urls" ((item :attrs) :href)]))))
+
+(defn urls-index []
+  @(@r [:smembers "medication-urls"]))
