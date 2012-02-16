@@ -1,7 +1,8 @@
 (ns documeds.views.medications
   (:require [documeds.models.medication :as medication]
             [documeds.templates.medications :as t]
-            [noir.response :as response])
+            [noir.response :as response]
+            [noir.request :as request])
   (:use noir.core
         hiccup.core
         hiccup.page-helpers
@@ -9,6 +10,7 @@
 
 (defpage "/" {}
   (let [items (medication/all)]
+    (response/redirect "http://localhost:5000/GOOO")
     (t/medication-list items)))
 
 (defpage "/medication/new" {:as med}
