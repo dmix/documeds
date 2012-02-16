@@ -1,5 +1,4 @@
-(ns documeds.middleware.ssl
-  (:require [clojure.contrib.string :as contrib]))
+(ns documeds.middleware.ssl)
 
 (defn https-url [request-url]
   (str "https://" (:server-name request-url) (:uri request-url)))
