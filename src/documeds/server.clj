@@ -1,10 +1,6 @@
 (ns documeds.server
   (:require [noir.server :as server]
-            [documeds.middleware.ssl :as ssl])
-  (:use aleph.redis
-        documeds.settings))
-
-(def r (redis-client {:host redis-url :password redis-pass :port redis-port}))
+            [documeds.middleware.ssl :as ssl]))
 
 (server/load-views "src/documeds/views/")
 (server/add-middleware ssl/require-https)
