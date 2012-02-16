@@ -10,11 +10,12 @@
 
 (ns documeds.models.medication
     (:require [noir.validation :as validation])
-    (:use documeds.settings
+    (:use aleph.redis
+          documeds.settings
           documeds.models.keys))
 
-; (def r (redis-client {:host redis-url :password redis-pass :port redis-port}))
-(def r [])
+(def r (redis-client {:host redis-url :password redis-pass :port redis-port}))
+
 ; Index ------------------------------------------------------------------------
 
 (defn index []
