@@ -1,6 +1,7 @@
 (ns documeds.scrapers.ncbi
   (:use [net.cgrand.enlive-html :as html]
         net.cgrand.moustache
+        documeds.settings
         [aleph.redis :only (redis-client)]))
 
 (def letters (map char (concat (range 97 123))))
