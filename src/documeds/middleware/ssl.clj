@@ -9,4 +9,4 @@
   (fn [request]
     (if (and (= (:server-name request) "documeds.com") (= (:scheme request) :http))
       (ring.util.response/redirect (https-url request)))
-      (handler request))))
+      (handler request)))
