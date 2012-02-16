@@ -15,6 +15,7 @@
 
 ; [aleph.redis :only (redis-client)]
 ; (def r (redis-client {:host redis-url :password redis-pass :port redis-port}))
+
 (def r ())
 
 ; Index ------------------------------------------------------------------------
