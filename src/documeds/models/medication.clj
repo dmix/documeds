@@ -10,11 +10,12 @@
 
 (ns documeds.models.medication
     (:require [noir.validation :as validation])
-    (:use documeds.settings
+    (:use [aleph.redis :only (redis-client)]
+          documeds.settings
           documeds.models.keys))
-; [aleph.redis :only (redis-client)]
-; (def r (redis-client {:host redis-url :password redis-pass :port redis-port}))
-(def r ())
+
+(def r (redis-client {:host "dogfish.redistogo.com" :password "527d2a676998e2ccb850c25677d3cc8c" :port 9583}))
+
 ; Index ------------------------------------------------------------------------
 
 (defn index []
