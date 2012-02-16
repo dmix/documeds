@@ -19,21 +19,21 @@
 ; Index ------------------------------------------------------------------------
 
 (defn index []
-  @(r [:smembers (key-medications-index)]))
+  (r [:smembers (key-medications-index)]))
 
 (defn add-index [id]
-  @(r [:sadd (key-medications-index) id]))
+  (r [:sadd (key-medications-index) id]))
 
 (defn remove-index [id]
-  @(r [:srem (key-medications-index) id]))
+  (r [:srem (key-medications-index) id]))
 
 (defn increment []
-  @(r [:incr (key-increment-medications)]))
+  (r [:incr (key-increment-medications)]))
 
 ; Getters ------------------------------------------------------------------------
 
 (defn retrieve [id]
-  (let [medication (apply hash-map @(r [:hgetall (key-medication id)]))]
+  (let [medication (apply hash-map (r [:hgetall (key-medication id)]))]
     (when (not (empty? medication))
       {:id (medication "id")
        :title (medication "title")
@@ -47,20 +47,20 @@
 ; Setters ------------------------------------------------------------------------
 
 (defn set-id [id new-id]
-  @(r [:hset (key-medication id) "id" new-id]))
+  (r [:hset (key-medication id) "id" new-id]))
 
 (defn set-title [id new-title]
-  @(r [:hset (key-medication id) "title" new-title]))
+  (r [:hset (key-medication id) "title" new-title]))
 
 (defn set-dosage [id new-dosage]
-  @(r [:hset (key-medication id) "dosage" new-dosage]))
+  (r [:hset (key-medication id) "dosage" new-dosage]))
 
 (defn add! [medication]
   (let [id (increment)
         title (medication "title")
         dosage (medication "dosage")]
     (add-index id) ; Add id to medications seq of IDs
-    @(r [:hmset (key-medication id) "id" id 
+    (r [:hmset (key-medication id) "id" id 
                                     "title" title 
                                     "dosage" dosage])))
 
@@ -73,14 +73,14 @@
   (let [id (medication :id)
         title (medication :title)
         dosage (medication :dosage)]
-    @(r [:hmset (key-medication id) "id" id
+    (r [:hmset (key-medication id) "id" id
                                     "title" title 
                                     "dosage" dosage])))
 
 (defn remove! [medication]
   (let [id (medication :id)]
     (remove-index id) ; Remove id to medications seq of IDs
-    @(r [:del (key-medication id)])))
+    (r [:del (key-medication id)])))
 
 ; Validation ------------------------------------------------------------------------
 
