@@ -9,6 +9,9 @@
         hiccup.form-helpers))
 
 (defpage "/" {}
+  (t/welcome))
+
+(defpage "/medications" {}
   (let [items (medication/all)]
     (response/redirect "http://localhost:5000/GOOO")
     (t/medication-list items)))
@@ -32,7 +35,7 @@
     (do 
       (medication/update! med)
       (t/flash-notice "Medication Updated")
-      (response/redirect "/"))))
+      (response/redirect "/medications"))))
 
 (defpage "/medication/show/:id" {:keys [id]}
   (let [med (medication/retrieve id)]
@@ -42,4 +45,4 @@
   (let [med (medication/retrieve id)]
     (medication/remove! med)
     (t/flash-notice "Medication Removed!")
-    (response/redirect "/")))
+    (response/redirect "/medications")))

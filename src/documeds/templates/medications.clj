@@ -8,26 +8,36 @@
 (defpartial layout [& content]
   (html5
     [:head
-      [:title "documeds"]
-      (include-css "/css/reset.css")
+      [:title "Medication Tracker | DocuMeds"]
+      (include-css "/css/bootstrap.css")
       (include-css "/css/app.css")]
     [:body
       [:div#wrapper
-        [:h1 "MediCounter"]
-        content
-        [:a {:href "/"} "Index"]
-        [:a {:href "/medication/new"} "New"]]]))
+        [:h1 [:a {:href "/medications"} "Docu" [:span "Meds"]]]
+        content " "
+        [:br]
+        [:a.btn.btn-primary {:href "/medication/new"} "New"]]]))
 
-(defpartial medication-index []
-  (layout
-    [:center 
-      [:h3 "Welcome"]]))
+(defpartial welcome []
+  (html5
+    [:head
+      [:title "Medication Tracker | DocuMeds"]
+      (include-css "/css/bootstrap.css")
+      (include-css "/css/app.css")]
+    [:body
+      [:div#central
+        [:h1 "Docu" [:span "Meds"]]
+        [:h5 "Helping to make taking medication
+              <span>safer</span>,<br> more <span>effective</span> & <span>anxiety-free</span>."]
+        [:br][:br][:br][:br][:br][:br]
+        [:div.small "Follow development on "
+          [:a {:href "/medications"} "Github"]]]]))
   
 (defpartial medication-row [{:keys [id title dosage]}]
   [:li {:id id}
-      [:b [:a {:href (str "/medication/show/" id)} title]]
-      [:span.dosage dosage]
-      [:a {:href (str "/medication/edit/" id)} "Edit"]
+      [:b [:a {:href (str "/medication/show/" id)} title]] "  "
+      [:span.dosage dosage] "  "
+      [:a {:href (str "/medication/edit/" id)} "Edit"] "  "
       [:a {:href (str "/medication/delete/" id)} "Remove"]])
 
 (defpartial medication-list [items]
@@ -53,21 +63,23 @@
   [:p.error first-error])
 
 (defpartial medication-fields [{:keys [title dosage]}]
-  (validation/on-error :title error-item)
-  (label "title" "Title: ")
-  (text-field "title" title)
-  (validation/on-error :dosage error-item)
-  (label "dosage" "Dosage: ")
-  (text-field "dosage" dosage))
+  [:p
+    (validation/on-error :title error-item)
+    (label "title" "Title: ")
+    (text-field "title" title)]
+  [:p 
+    (validation/on-error :dosage error-item)
+    (label "dosage" "Dosage: ")
+    (text-field "dosage" dosage)])
 
 (defpartial new-medication [med]
   (layout
     (form-to [:post "/medication/new"]
-        (medication-fields med)
-        (submit-button "Add medication"))))
+      (medication-fields med)
+      [:input {:type "submit" :class "btn" :value "Add Medication"}])))
   
 (defpartial edit-medication [med]
   (layout
     (form-to [:post (str "/medication/edit/" (med :id))]
         (medication-fields med)
-        (submit-button "Update medication"))))
+        [:input {:type "submit" :class "btn" :value "Update Medication"}])))
