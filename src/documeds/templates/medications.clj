@@ -13,10 +13,10 @@
       (include-css "/css/app.css")]
     [:body
       [:div#wrapper
-        [:h1 [:a {:href "/medications"} "Docu" [:span "Meds"]]]
+        [:h1 [:a {:href "/medications"} "docu" [:span "meds"]]]
         content " "
         [:br]
-        [:a.btn.btn-primary {:href "/medication/new"} "New"]]]))
+        [:a.btn.btn-primary {:href "/medication/new"} "New Medication"]]]))
 
 (defpartial welcome []
   (html5
@@ -26,12 +26,12 @@
       (include-css "/css/app.css")]
     [:body
       [:div#central
-        [:h1 "Docu" [:span "Meds"]]
+        [:h1 "docu" [:span "meds"]]
         [:h5 "Helping to make taking medication
               <span>safer</span>,<br> more <span>effective</span> & <span>anxiety-free</span>."]
         [:br][:br][:br][:br][:br][:br]
         [:div.small "Follow development on "
-          [:a {:href "/medications"} "Github"]]]]))
+          [:a {:href "https://github.com/dmix/documeds"} "Github"]]]]))
   
 (defpartial medication-row [{:keys [id title dosage]}]
   [:li {:id id}
