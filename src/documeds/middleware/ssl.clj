@@ -7,7 +7,6 @@
 (defn require-https
   [handler]
   (fn [request]
-    (if (= (:scheme request) :http)
-      (if (= (:server-name request) "documeds.com")
-        (ring.util.response/redirect (https-url request)))
-        (handler request))))
+    (if (and (= (:server-name request) "documeds.com") (= (:scheme request) :http))
+      (ring.util.response/redirect (https-url request)))
+      (handler request))))
