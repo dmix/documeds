@@ -4,7 +4,7 @@
         aleph.redis))
 
 (def letters (map char (concat (range 97 123))))
-(def r (redis-client {:host "localhost"}))
+(def r (redis-client {:host redis-url :password redis-pass :port redis-port}))
 
 (defn info-url [url]
   (str "http://www.ncbi.nlm.nih.gov" url))
