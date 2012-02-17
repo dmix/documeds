@@ -47,7 +47,7 @@
 
 ; (set-info (parse-info "http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0000928/"))
 (defn parse-info [url]
-  (let [url-data (fetch-url url)
+  (let [url-data (fetch-url (info-url url))
         med-name (first (:content (first (html/select url-data [:h1 :.title]))))
         sub-name (first (:content (first (html/select url-data [:h1 :.title_addtn]))))
         id (first (clojure.string/split (:id (:attrs (first (html/select url-data [:.body-content :.section])))) #"-"))]
