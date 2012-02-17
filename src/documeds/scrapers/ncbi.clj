@@ -74,3 +74,8 @@
   (doseq [url (urls-index)]
     (println url)
     (set-info (parse-info url))))
+
+(defn -main [& args]
+  (println "Running scrapers")
+  (store-urls)
+  (store-info))
