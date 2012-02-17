@@ -24,7 +24,7 @@
 (defn store-urls []
   (doseq [letter letters]
     (doseq [item (parse-urls letter)]
-      (println ((item :attrs) :href))
+      (println (str "Storing URL for " ((item :attrs) :href)))
       @(@r [:sadd "medication-urls" ((item :attrs) :href)]))))
 
 (defn urls-index []
@@ -72,7 +72,7 @@
 
 (defn store-info []
   (doseq [url (urls-index)]
-    (println url)
+    (println (str "Fetching info from " url))
     (set-info (parse-info url))))
 
 (defn -main [& args]

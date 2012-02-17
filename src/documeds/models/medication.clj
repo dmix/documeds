@@ -33,23 +33,27 @@
 ; Getters ------------------------------------------------------------------------
 
 (defn retrieve [id]
-  (let [m (apply hash-map @(@r [:hgetall (key-medication id)]))]
-    (when (not (empty? m))
-      {:id id 
-       :name (m "name")
-       :subtitle (m "subtitle")
-       :why (m "why")
-       :how (m "how")
-       :side_effects (m "side_effects")
-       :other_uses (m "other_uses")
-       :other_information (m "other_information")
-       :precautions (m "precautions")
-       :dietary (m "dietary")
-       :brand_names (m "brand_names")
-       ; :brand_names_combo (m "brand_names_combo")
-       :overdose (m "overdose")
-       :if_i_forget (m "if_i_forget")
-       :slug (m "slug")})))
+  {
+    :name @(@r [:hget (key-medication id) "name"])
+    :subtitle "subtitle"
+  })
+  ; (let [m (apply hash-map @(@r [:hgetall (key-medication id)]))]
+  ;   (when (not (empty? m))
+  ;     {:id id
+  ;      :name (m "name")
+  ;      :subtitle (m "subtitle")
+  ;      :why (m "why")
+  ;      :how (m "how")
+  ;      :side_effects (m "side_effects")
+  ;      :other_uses (m "other_uses")
+  ;      :other_information (m "other_information")
+  ;      :precautions (m "precautions")
+  ;      :dietary (m "dietary")
+  ;      :brand_names (m "brand_names")
+  ;      ; :brand_names_combo (m "brand_names_combo")
+  ;      :overdose (m "overdose")
+  ;      :if_i_forget (m "if_i_forget")
+  ;      :slug (m "slug")})))
 
 (defn all []  
   (for [id (index)
