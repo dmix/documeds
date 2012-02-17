@@ -22,7 +22,7 @@
 (defpage [:post "/medication/new"] {:as med}
   (if (medication/valid? med)
     (do 
-      (medication/add! {"title" (med :title) "dosage" (med :dosage)})
+      (medication/add! {"name" (med :name) "subtitle" (med :subtitle)})
       (t/flash-notice "Medication Created!")
       (response/redirect "/medications"))))
 

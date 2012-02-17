@@ -39,8 +39,11 @@
   (first (html/select url-data [(keyword (str "#" id attribute))])))
 
 (defn parse-section [id, url-data, attribute]
-  (let [elements (content-html id url-data attribute)]
-    (apply str (html/emit* [elements]))))
+  (let [elements (content-html id url-data attribute)
+        content (apply str (html/emit* [elements]))]
+    (if (= content " ")
+      "empty row"
+      content)))
 
 ; (set-info (parse-info "http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0000928/"))
 (defn parse-info [url]
@@ -58,7 +61,7 @@
     :precautions (parse-section id url-data "-precautions")
     :dietary (parse-section id url-data "-specialDietary")
     :brand_names (parse-section id url-data "-brandNames")
-    :brand_names_combo (parse-section id url-data "-brandNamesCombo")
+    ; :brand_names_combo (parse-section id url-data "-brandNamesCombo")
     :overdose (parse-section id url-data "-overdose")
     :if_i_forget (parse-section id url-data "-ifIForget")
     :slug (clojure.string/replace (clojure.string/replace (clojure.string/lower-case med-name) #"[^0-9a-z ]/i" "") " " "_")
@@ -69,4 +72,5 @@
 
 (defn store-info []
   (doseq [url (urls-index)]
+    (println url)
     (set-info (parse-info url))))

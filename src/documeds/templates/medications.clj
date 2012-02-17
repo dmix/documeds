@@ -33,10 +33,10 @@
         [:div.small "Follow development on "
           [:a {:href "https://github.com/dmix/documeds"} "Github"]]]]))
   
-(defpartial medication-row [{:keys [id title dosage]}]
+(defpartial medication-row [{:keys [id name subtitle]}]
   [:li {:id id}
-      [:b [:a {:href (str "/medication/show/" id)} title]] "  "
-      [:span.dosage dosage] "  "
+      [:b [:a {:href (str "/medication/show/" id)} name]] "  "
+      [:span.subtitle subtitle] "  "
       [:a {:href (str "/medication/edit/" id)} "Edit"] "  "
       [:a {:href (str "/medication/delete/" id)} "Remove"]])
 
@@ -56,21 +56,21 @@
 
 (defpartial show-medication [med]
   (layout
-    [:h3 (med :title)]
-    [:p (med :dosage)]))
+    [:h3 (med :name)]
+    [:p (med :subtitle)]))
 
 (defpartial error-item [[first-error]]
   [:p.error first-error])
 
-(defpartial medication-fields [{:keys [title dosage]}]
+(defpartial medication-fields [{:keys [name subtitle]}]
   [:p
-    (validation/on-error :title error-item)
-    (label "title" "Title: ")
-    (text-field "title" title)]
+    (validation/on-error :name error-item)
+    (label "name" "Name: ")
+    (text-field "name" name)]
   [:p 
-    (validation/on-error :dosage error-item)
-    (label "dosage" "Dosage: ")
-    (text-field "dosage" dosage)])
+    (validation/on-error :subtitle error-item)
+    (label "subtitle" "Dosage: ")
+    (text-field "subtitle" subtitle)])
 
 (defpartial new-medication [med]
   (layout
