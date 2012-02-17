@@ -1,6 +1,6 @@
 (ns documeds.views.medications
   (:require [documeds.models.medication :as medication]
-            [documeds.templates.medications :as t]
+            [documeds.views.templates.medications :as t]
             [noir.response :as response]
             [noir.request :as request])
   (:use noir.core

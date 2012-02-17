@@ -2,12 +2,9 @@
   (:require [documeds.models.medication :as medication])
   (:use [net.cgrand.enlive-html :as html]
         net.cgrand.moustache
-        documeds.settings
-        documeds.models.keys
-        [aleph.redis :only (redis-client)]))
+        documeds.redis))
 
 (def letters (map char (concat (range 97 123))))
-(def r (delay (redis-client {:host redis-url :password redis-pass :port redis-port})))
 
 ; Fetch NCBI URLS ------------------------------------------------------------------------
 

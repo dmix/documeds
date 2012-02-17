@@ -1,4 +1,4 @@
-(ns documeds.templates.medications
+(ns documeds.views.templates.medications
   (:require [noir.validation :as validation])
   (:use noir.core
         hiccup.core

@@ -10,11 +10,7 @@
 
 (ns documeds.models.medication
     (:require [noir.validation :as validation])
-    (:use [aleph.redis :only (redis-client)]
-          documeds.settings
-          documeds.models.keys))
-
-(def r (delay (redis-client {:host redis-url :password redis-pass :port redis-port})))
+    (:use documeds.redis))
 
 ; Index ------------------------------------------------------------------------
 
@@ -34,6 +30,7 @@
 
 (defn retrieve [id]
   {
+    :id @(@r [:hget (key-medication id) "id"])
     :name @(@r [:hget (key-medication id) "name"])
     :subtitle "subtitle"
   })
