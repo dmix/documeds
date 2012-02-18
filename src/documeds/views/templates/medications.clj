@@ -9,6 +9,9 @@
   (html5
     [:head
       [:title "Medication Tracker | DocuMeds"]
+      (include-js "/assets/vendor.js")
+      (include-js "/assets/autocomplete.js")
+      (include-js "/assets/app.js")
       (include-css "/css/bootstrap.css")
       (include-css "/css/app.css")]
     [:body
@@ -43,6 +46,8 @@
 (defpartial medication-list [items]
  (layout
     [:h2 "Medication list"]
+    [:input {:class "text" :id "autocomplete" :type "text"}]
+    [:ul#results]
     [:ul#medications
         (map medication-row items)]))
 

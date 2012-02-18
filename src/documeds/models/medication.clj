@@ -50,6 +50,9 @@
     :let [medication (retrieve id)]]
    medication))
 
+(defn group []
+  (retrieve-multiple (take 25 (index))))
+
 ; Setters ------------------------------------------------------------------------
 
 (defn add! [m]

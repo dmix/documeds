@@ -12,8 +12,7 @@
   (t/welcome))
 
 (defpage "/medications" {}
-  (let [items (medication/all)]
-    (response/redirect "http://localhost:5000/GOOO")
+  (let [items (medication/group)]
     (t/medication-list items)))
 
 (defpage "/medication/new" {:as med}

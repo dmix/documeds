@@ -1,0 +1,10 @@
+package_path: ../resources/public/assets
+compress_assets: on
+javascript_compressor: closure
+
+javascripts:
+  vendor:
+    - resources/public/assets/vendor/jquery.js
+    - resources/public/assets/vendor/observe.js
+    - resources/public/assets/vendor/underscore.js
+    - resources/public/assets/vendor/backbone.js
