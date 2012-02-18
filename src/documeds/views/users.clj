@@ -47,8 +47,8 @@
       (render "/login" {:email (:email data)}))))
 
 (defpage "/signup" {:as user}
-  (t/new-user user)
-  (println (:headers (request/ring-request))))
+  (println (:headers (request/ring-request)))
+  (t/new-user user))
 
 (defpage [:post "/signup"] {:as user}
   (println user)
