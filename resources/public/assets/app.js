@@ -7,5 +7,6 @@
     $("#autocomplete").observe_field(1, function() {
       return Autocomplete.query(this.value);
     });
+    $('#results').hide();
     return App.init();
   });

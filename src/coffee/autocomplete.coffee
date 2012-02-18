@@ -1,6 +1,7 @@
 class Autocomplete
   query: (q) ->
     results = $('#results')
+    resultsList = $('#resultsList')
     if q.length > 0 and q != "Asprin, Valium, Zanax..."
       url = "/clomate/" + q
       $.ajax({
@@ -9,12 +10,13 @@ class Autocomplete
         type: "GET",
         success: (data) ->
           # console.log(data)
-          
           _.each(data, (result) ->
-            results.append("<li><a href='/medication/show/" + result["id"] + "'>" + result["name"] + "</a></li>")
+            resultsList.append("<li><a href='/medication/show/" + result["id"] + "'>" + result["name"] + "</a></li>")
           )
+          results.show()
       })
     else
-      results.html("")
+      resultsList.html("")
+      results.hide()
 
 this.Autocomplete = new Autocomplete;

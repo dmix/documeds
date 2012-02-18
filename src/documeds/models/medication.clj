@@ -51,7 +51,7 @@
    medication))
 
 (defn group []
-  (retrieve-multiple (take 25 (index))))
+  (retrieve-multiple (take 20 (index))))
 
 ; Setters ------------------------------------------------------------------------
 

@@ -2,8 +2,8 @@
   (:require [noir.server :as server]
             [documeds.middleware.ssl :as ssl]))
 
-(server/load-views "src/documeds/views/")
 (server/add-middleware ssl/require-https)
+(server/load-views "src/documeds/views/")
 
 (defn -main [& m]
   (let [mode (or (first m) :dev)

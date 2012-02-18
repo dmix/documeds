@@ -16,7 +16,7 @@
       (include-css "/css/app.css")]
     [:body
       [:div#wrapper
-        [:h1 [:a {:href "/medications"} "docu" [:span "meds"]]]
+        [:h1 [:a {:href "/medications"} [:img {:src "/img/logo.png"}]]]
         content " "
         [:br]
         [:a.btn.btn-primary {:href "/medication/new"} "New Medication"]]]))
@@ -29,7 +29,8 @@
       (include-css "/css/app.css")]
     [:body
       [:div#central
-        [:h1 "docu" [:span "meds"]]
+        [:img {:src "/img/logo.png"}]
+        [:br][:br][:br][:br]
         [:h5 "Helping to make taking medication
               <span>safer</span>,<br> more <span>effective</span> & <span>anxiety-free</span>."]
         [:br][:br][:br][:br][:br][:br]
@@ -47,7 +48,8 @@
  (layout
     [:h2 "Medication list"]
     [:input {:class "text" :id "autocomplete" :type "text"}]
-    [:ul#results]
+    [:div#results
+      [:ul#resultsList]]
     [:ul#medications
         (map medication-row items)]))
 

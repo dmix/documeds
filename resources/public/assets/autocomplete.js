@@ -6,8 +6,9 @@
     function Autocomplete() {}
 
     Autocomplete.prototype.query = function(q) {
-      var results, url;
+      var results, resultsList, url;
       results = $('#results');
+      resultsList = $('#resultsList');
       if (q.length > 0 && q !== "Asprin, Valium, Zanax...") {
         url = "/clomate/" + q;
         return $.ajax({
@@ -15,13 +16,15 @@
           contentType: "application/json",
           type: "GET",
           success: function(data) {
-            return _.each(data, function(result) {
-              return results.append("<li><a href='/medication/show/" + result["id"] + "'>" + result["name"] + "</a></li>");
+            _.each(data, function(result) {
+              return resultsList.append("<li><a href='/medication/show/" + result["id"] + "'>" + result["name"] + "</a></li>");
             });
+            return results.show();
           }
         });
       } else {
-        return results.html("");
+        resultsList.html("");
+        return results.hide();
       }
     };
 

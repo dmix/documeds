@@ -1,7 +1,7 @@
 (ns documeds.autocomplete.helpers
   (:require [noir.validation :as validation]))
 
-(def min-complete 3)
+(def min-complete 2)
 
 (defn normalize [phrase]
   "Clean string in preperation for autocomplete query"
