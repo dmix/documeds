@@ -37,6 +37,7 @@
     (if (crypt/compare (:password data) (:password user))
       (do
         (sess/put! :email (:email user))
+        (sess/put! :country (:country user))
         (layouts/flash! (str "Welcome back " (:username user)))
         (response/redirect "/medications"))
       (do 
@@ -47,7 +48,6 @@
       (render "/login" {:email (:email data)}))))
 
 (defpage "/signup" {:as user}
-  (println (:headers (request/ring-request)))
   (t/new-user user))
 
 (defpage [:post "/signup"] {:as user}
@@ -55,12 +55,14 @@
   (let [email (user :email)
         username (user :username)
         password (user :password)
-        country (country)
-        ip (ip)]
+        headers (:headers (request/ring-request))
+        country (headers "cf-ipcountry")
+        ip (headers "cf-connecting-ip")]
   (if (user/valid? user)
       (do 
         (user/add! {:email email :username username :password password :country country :ip ip})
         (sess/put! :email email)
+        (sess/put! :country country)
         (layouts/flash! "Welcome to DocuMeds")
         (response/redirect "/medications")))))
 

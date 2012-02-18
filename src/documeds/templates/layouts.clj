@@ -23,7 +23,9 @@
             [:a {:href "/signup"} "Sign Up"]]
           [:div#loggedin
             [:a {:href "/logout"} "Log Out"]
-            [:div#name (sess/get :email)]])
+            [:div#name (sess/get :email)]
+            [:img {:src (str "/img/country/" (clojure.string/lower-case (sess/get :country)) ".png")}]
+            ])
       ]
       [:div#wrapper
         (when-let [message (sess/flash-get)]
