@@ -9,7 +9,7 @@
       var results, url;
       results = $('#results');
       if (q.length > 0 && q !== "Asprin, Valium, Zanax...") {
-        url = "http://localhost:5000/clomate/" + q;
+        url = "/clomate/" + q;
         return $.ajax({
           url: url,
           contentType: "application/json",
