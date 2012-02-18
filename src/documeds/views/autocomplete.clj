@@ -5,6 +5,6 @@
   (:use noir.core
         documeds.autocomplete.matcher))
 
-(defpage "/clomate/:query" {:keys [query]}
+(defpage "/autocomplete/:query" {:keys [query]}
   (let [matches (matches-for-term query)]
   (response/json matches)))

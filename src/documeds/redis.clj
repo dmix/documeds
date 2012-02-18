@@ -20,6 +20,12 @@
 (defn key-increment-medications [] "global:nextMedicationID")
 
 
+; Medication Model Keys --------------------------------------------
+(defn key-user [id] (str "users:" id))
+(defn key-users-index [] "users")
+(defn key-increment-users [] "global:nextUserID")
+
+
 ; Autocomplete Keys -------------------------------------------------
 (def key-autocomplete "clomate-index:")
 (def key-database     "clomate-data:")
@@ -27,3 +33,4 @@
 
 (defn redis-has-key [redis-key]
   (= @(@r [:exists redis-key]) 1))
+  

@@ -3,9 +3,38 @@ a {
 
 body {
   background: url("/img/bg.png");
-  padding: 50px 50px;
   color: #959da2;
   font-size: 1.1em; }
+
+#top {
+  background: #FFF;
+  height: 32px;
+  padding: 5px 15px; }
+  #top #name {
+    font-weight: bold;
+    position: relative;
+    top: 6px;
+    float: right;
+    margin-right: 10px; }
+  #top a {
+    padding: 7px 10px;
+    display: block;
+    background: #f1f1f1;
+    float: right;
+    color: #333;
+    margin-right: 3px;
+    font-size: .9em;
+    font-weight: bold;
+    border-radius: 3px; }
+  #top a:hover {
+    text-decoration: none;
+    background: #ccc; }
+
+#wrapper {
+  padding: 20px 50px; }
+
+#logo {
+  display: block; }
 
 h1 {
   letter-spacing: -1px;
@@ -56,8 +85,16 @@ label {
 #medications li {
   margin-bottom: 10px; }
 
-#results {
-  background: #FFF;
-  padding: 10px;
-  border: 1px solid #eee;
-  margin-bottom: 20px; }
+#search {
+  margin-top: 15px; }
+  #search button {
+    position: relative;
+    top: -5px;
+    margin-left: 5px;
+    padding: 12px 20px; }
+  #search input {
+    padding: 7px 10px;
+    font-size: 1.2em;
+    height: 30px;
+    width: 400px;
+    margin-bottom: 10px; }

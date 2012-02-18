@@ -1,6 +1,7 @@
 (ns documeds.views.medications
   (:require [documeds.models.medication :as medication]
-            [documeds.views.templates.medications :as t]
+            [documeds.templates.layouts :as layouts]
+            [documeds.templates.medications :as t]
             [noir.response :as response]
             [noir.request :as request])
   (:use noir.core
@@ -9,7 +10,7 @@
         hiccup.form-helpers))
 
 (defpage "/" {}
-  (t/welcome))
+  (layouts/landing))
 
 (defpage "/medications" {}
   (let [items (medication/group)]

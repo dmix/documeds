@@ -7,4 +7,4 @@ javascripts:
     - resources/public/assets/vendor/jquery.js
     - resources/public/assets/vendor/observe.js
     - resources/public/assets/vendor/underscore.js
-    - resources/public/assets/vendor/backbone.js
+    # - resources/public/assets/vendor/backbone.js

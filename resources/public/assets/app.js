@@ -1,12 +1,20 @@
 
-  this.App = {
-    init: function() {}
+  this.DocuMeds = {
+    Url: null,
+    Views: {},
+    Controllers: {},
+    Collections: {},
+    Models: {},
+    Functions: {},
+    init: function() {
+      return false;
+    }
   };
 
-  $(document).ready(function() {
+  $(function() {
+    DocuMeds.init();
     $("#autocomplete").observe_field(1, function() {
       return Autocomplete.query(this.value);
     });
-    $('#results').hide();
-    return App.init();
+    return DocuMeds.Functions.applyDefaultText("autocomplete", "Asprin, Valium, Zanax...");
   });

@@ -1,10 +1,17 @@
-@App = {
+@DocuMeds = {
+  Url: null,
+  Views: {},
+  Controllers: {},
+  Collections: {},
+  Models: {},
+  Functions: {}
   init: ->
+    return false
 }
-$(document).ready(->
+
+$ ->
+  DocuMeds.init()
   $("#autocomplete").observe_field(1, ->
     Autocomplete.query(this.value)
   )
-  $('#results').hide()
-  App.init()
-)
+  DocuMeds.Functions.applyDefaultText("autocomplete", "Asprin, Valium, Zanax...")
