@@ -1,13 +1,3 @@
-; "Schema" --------------------------------------------------------------------
-;
-; medications:<ID> = {
-;     id: medication id
-;     title: medication tile
-;     dosage: description of the dosage season
-; }
-;
-; (add! {"title" "Tylneol" "dosage" "10mg"})
-
 (ns documeds.models.medication
     (:require [noir.validation :as validation])
     (:use documeds.redis))
@@ -51,6 +41,9 @@
   ;      :overdose (m "overdose")
   ;      :if_i_forget (m "if_i_forget")
   ;      :slug (m "slug")})))
+
+(defn retrieve-multiple [ids]
+  (map retrieve ids))
 
 (defn all []  
   (for [id (index)

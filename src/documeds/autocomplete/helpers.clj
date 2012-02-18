@@ -1,7 +1,7 @@
 (ns documeds.autocomplete.helpers
   (:require [noir.validation :as validation]))
 
-(def min-complete 2)
+(def min-complete 3)
 
 (defn normalize [phrase]
   "Clean string in preperation for autocomplete query"
@@ -11,7 +11,7 @@
         phrase #"[^a-z0-9 ]/i" ""))))
 
 (defn word-prefixes [word]
-  "Create list of prefixes for a word, for ex autocomplete = (au aut auto autoc etc)"
+  "Create list of prefixes for a word, for ex 'autocomplete' ('au' 'aut' 'auto' 'autoc' etc)"
   (let [l (+ 1 (count word))
         r (range min-complete l)]
     (map (fn [num] (apply str (take num word))) r)))
