@@ -98,3 +98,10 @@ label {
     height: 30px;
     width: 400px;
     margin-bottom: 10px; }
+
+#flash {
+  padding: 10px;
+  font-size: 1.1em;
+  background: #FFF;
+  border: 1px solid #ccc;
+  margin-bottom: 10px; }

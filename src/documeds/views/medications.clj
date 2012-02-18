@@ -23,7 +23,7 @@
   (if (medication/valid? med)
     (do 
       (medication/add! {"name" (med :name) "subtitle" (med :subtitle)})
-      (t/flash-notice "Medication Created!")
+      (layouts/flash! "Medication created!")
       (response/redirect "/medications"))))
 
 (defpage "/medication/edit/:id" {:keys [id]}
@@ -34,7 +34,7 @@
   (if (medication/valid? med)
     (do 
       (medication/update! med)
-      (t/flash-notice "Medication Updated")
+      (layouts/flash! "Medication Updated")
       (response/redirect "/medications"))))
 
 (defpage "/medication/show/:id" {:keys [id]}
@@ -44,5 +44,5 @@
 (defpage "/medication/delete/:id" {:keys [id]}
   (let [med (medication/retrieve id)]
     (medication/remove! med)
-    (t/flash-notice "Medication Removed!")
+    (layouts/flash! "Medication Removed!")
     (response/redirect "/medications")))

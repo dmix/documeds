@@ -17,10 +17,6 @@
     [:ul#medications
         (map medication-row items)]))
 
-(defpartial flash-notice [msg]
-  (layouts/application
-    [:p msg]))
-
 (defpartial medication-removed []
   (layouts/application
     [:p "Medication removed!"]))

@@ -1,4 +1,5 @@
 (ns documeds.templates.layouts
+  (:require [noir.session :as sess])
   (:use noir.core
         hiccup.core
         hiccup.page-helpers
@@ -16,12 +17,17 @@
       (include-css "/css/app.css")]
     [:body
       [:div#top
-        [:a {:href "/login"} "Log In"] " "
-        [:a {:href "/signup"} "Sign Up"]
-        ; [:a {:href "/logout"} "Log Out"]
-        ; [:div#name "Dan McGrady"]
+        (if-not (sess/get :email)
+          [:div#loggedout
+            [:a {:href "/login"} "Log In"] " "
+            [:a {:href "/signup"} "Sign Up"]]
+          [:div#loggedin
+            [:a {:href "/logout"} "Log Out"]
+            [:div#name (sess/get :email)]])
       ]
       [:div#wrapper
+        (when-let [message (sess/flash-get)]
+          [:div#flash message])
         [:a {:href "/medications" :id "logo"} [:img {:src "/img/logo.png"}]]
         [:div#search
           [:input {:class "text" :id "autocomplete" :type "text"}]
@@ -48,3 +54,7 @@
         [:br][:br][:br][:br][:br][:br]
         [:div.small "Follow development on "
           [:a {:href "https://github.com/dmix/documeds"} "Github"]]]]))
+
+(defn flash! [message]
+  (sess/flash-put! message)
+  nil)

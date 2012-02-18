@@ -8,32 +8,32 @@
 (defn index []
   @(@r [:smembers (key-users-index)]))
 
-(defn add-index [id]
-  (@r [:sadd (key-users-index) id]))
+(defn add-index [email]
+  (@r [:sadd (key-users-index) email]))
 
-(defn remove-index [id]
-  (@r [:srem (key-users-index) id]))
+(defn remove-index [email]
+  (@r [:srem (key-users-index) email]))
 
 (defn increment []
   @(@r [:incr (key-increment-users)]))
 
 ; Getters ------------------------------------------------------------------------
 
-(defn retrieve [id]
-  (let [u (apply hash-map @(@r [:hgetall (key-user id)]))]
+(defn retrieve [email]
+  (let [u (apply hash-map @(@r [:hgetall (key-user email)]))]
     (when (not (empty? u))
-      {:id id
-       :username (u "username")
+      {:username (u "username")
        :email (u "email")
        :country (u "country")
-       :ip (u "ip")})))
+       :ip (u "ip")
+       :password (u "password")})))
 
-(defn retrieve-multiple [ids]
-  (map retrieve ids))
+(defn retrieve-multiple [emails]
+  (map retrieve emails))
 
 (defn all []  
-  (for [id (index)
-    :let [user (retrieve id)]]
+  (for [email (index)
+    :let [user (retrieve email)]]
    user))
 
 (defn group []
@@ -41,18 +41,17 @@
 
 ; Setters ------------------------------------------------------------------------
 
-(defn add! [u]
-  (let [id (increment)]
-    (add-index id) ; Add id to users seq of IDs
-    @(@r [:hmset (key-user id) "id" id 
-                               "name" (:name u)
-                               "username" (:username u)
-                               "email" (:email u)
-                               "country" (:country u)
-                               "ip" (:ip u)])))
+(defn new-password! [email new-pass]
+  (@r [:hset (key-user email) "password" (crypt/encrypt new-pass)]))
 
-(defn new-password! [id new-pass]
- @(r [:hset (key-user id) "pass" (crypt/encrypt new-pass)]))
+(defn add! [u]
+  (let [email (:email u)]
+    (add-index email) ; Add id to users seq of IDs
+    (new-password! email (:password u))
+    (@r [:hmset (key-user email) "username" (:username u)
+                                 "email" (:email u)
+                                 "country" (:country u)
+                                 "ip" (:ip u)])))
 
 (defn add-multiple [users]
   (dorun (map add! users)))
@@ -60,26 +59,29 @@
 ; Modify ------------------------------------------------------------------------
 
 (defn update! [user]
-  (let [id (user :id)
+  (let [email (user :email)
         password (user :password)]
   (when (not (empty? password))
-    (new-password! id password))
-  (@r [:hmset (key-user id) "id" id
-                            "name" (user :name)
-                            "email" (user :email)])))
+    (new-password! email password))
+  (@r [:hmset (key-user email) "name" (user :username)
+                               "email" email])))
 
 (defn remove! [user]
-  (let [id (user :id)]
-    (remove-index id) ; Remove id to users seq of IDs
-    (@r [:del (key-user id)])))
+  (let [email (user :email)]
+    (remove-index email) ; Remove id to users seq of IDs
+    (@r [:del (key-user email)])))
 
 ; Validation ------------------------------------------------------------------------
 
-(def email-regex #"[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}")
-
-(defn valid? [{:keys [title dosage]}]
-  (validation/rule (validation/min-length? title 4)
-      [:title "Your title must have more than 5 letters."])
-  (validation/rule (validation/has-value? dosage)
-      [:dosage "You must set a dosage"])
-  (not (validation/errors? :title :dosage)))
+(defn valid? [{:keys [username email password]}]
+  (validation/rule (validation/is-email? email)
+    [:title "You need to submit a real email address"])
+  (validation/rule (validation/min-length? password 3)
+    [:title "Your password must have more than 3 letters."])
+  (validation/rule (validation/has-value? username)
+    [:dosage "You must set a username"])
+  (validation/rule (validation/has-value? email)
+    [:dosage "You must set an email"])
+  (validation/rule (validation/has-value? password)
+    [:dosage "You must set a password"])
+  (not (validation/errors? :username :email :password)))

@@ -11,13 +11,17 @@
         hiccup.page-helpers
         hiccup.form-helpers))
 
-(defn flash! [message]
-  (sess/flash-put! message)
-  nil)
+; Header Data ------------------------------------------------------------------------
+
+(defn ip []
+  (:headers (request/ring-request)))
+
+(defn country []
+  "CN")
 
 ; Authentication --------------------------------------------------------------
 (defn force-login []
-  (flash! "Please log in to view that page!")
+  (layouts/flash! "Please log in to view that page!")
   (response/redirect "/"))
 
 (defmacro login-required [& body]
@@ -25,34 +29,43 @@
      (force-login)
      (do ~@body)))
 
-(defn create-user [email password]
-  ; (users/set-email! email email)
-  ; (users/set-pass! email password)
-  ; (sess/put! :email email)
-  ; (users/user-get email))
-)
-
-(defn check-login [{:keys [email password]}]
-  (if (some empty? [email password])
-    (flash! "Both fields are required.  This really shouldn't be difficult.")
-    (if-not (re-find user/email-regex email)
-      (flash! "That's not an email address!")
-      (if-let [user (user/retrieve email)]
-        (if (crypt/compare password (:pass user))
-          (do
-            (sess/put! :email email)
-            user)
-          (flash! "Invalid login!"))
-        (create-user email password)))))
-
 (defpage "/login" {:as user}
   (t/new-session user))
 
-(defpage [:post "/login"] {:as user}
-  (t/new-session user))
+(defpage [:post "/login"] {:as data}
+  (if-let [user (user/retrieve (:email data))]
+    (if (crypt/compare (:password data) (:password user))
+      (do
+        (sess/put! :email (:email user))
+        (layouts/flash! (str "Welcome back " (:username user)))
+        (response/redirect "/medications"))
+      (do 
+        (layouts/flash! "Invalid password!")
+        (render "/login" {:email (:email data)})))
+    (do
+      (layouts/flash! "Invalid email")
+      (render "/login" {:email (:email data)}))))
 
 (defpage "/signup" {:as user}
-  (t/new-user user))
+  (t/new-user user)
+  (println (:headers (request/ring-request))))
 
 (defpage [:post "/signup"] {:as user}
-  (t/new-user user))
+  (println user)
+  (let [email (user :email)
+        username (user :username)
+        password (user :password)
+        country (country)
+        ip (ip)]
+  (if (user/valid? user)
+      (do 
+        (user/add! {:email email :username username :password password :country country :ip ip})
+        (sess/put! :email email)
+        (layouts/flash! "Welcome to DocuMeds")
+        (response/redirect "/medications")))))
+
+; Log Out ---------------------------------------------------------------------
+(defpage "/logout" []
+  (sess/remove! :email)
+  (layouts/flash! "Logged out successfully!")
+  (response/redirect "/medications"))
