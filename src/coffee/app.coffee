@@ -6,12 +6,17 @@
   Models: {},
   Functions: {}
   init: ->
+    Backbone.history.start()
+    if window.location.hash.length == 0
+      DocuMeds.Controllers.Items.index()
     return false
 }
 
 $ ->
   DocuMeds.init()
-  $("#autocomplete").observe_field(1, ->
-    Autocomplete.query(this.value)
-  )
   DocuMeds.Functions.applyDefaultText("autocomplete", "Asprin, Valium, Zanax...")
+
+  new Autocomplete({
+    input: $("#autocomplete")
+    results: $('#resultsList')
+  })

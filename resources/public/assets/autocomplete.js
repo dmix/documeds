@@ -3,12 +3,23 @@
 
   Autocomplete = (function() {
 
-    function Autocomplete() {}
+    function Autocomplete(fields) {
+      this.fields = fields;
+      this.inserted = [];
+      this.observe(this.fields.input);
+    }
+
+    Autocomplete.prototype.observe = function(field) {
+      var that;
+      that = this;
+      return field.observe_field(1, function() {
+        return that.query(this.value);
+      });
+    };
 
     Autocomplete.prototype.query = function(q) {
-      var results, resultsList, url;
-      results = $('#results');
-      resultsList = $('#resultsList');
+      var that, url;
+      that = this;
       if (q.length > 0 && q !== "Asprin, Valium, Zanax...") {
         url = "/autocomplete/" + q;
         return $.ajax({
@@ -17,12 +28,17 @@
           type: "GET",
           success: function(data) {
             return _.each(data, function(result) {
-              return resultsList.append("<li><a href='/medication/show/" + result["id"] + "'>" + result["name"] + "</a></li>");
+              if (_.indexOf(that.inserted, result["id"]) === -1) {
+                return dust.render("items_row", result, function(err, output) {
+                  that.fields.results.append(output);
+                  return that.inserted.push(result["id"]);
+                });
+              }
             });
           }
         });
       } else {
-        return resultsList.html("");
+        return this.fields.results.html("");
       }
     };
 
@@ -30,6 +46,6 @@
 
   })();
 
-  this.Autocomplete = new Autocomplete;
+  this.Autocomplete = Autocomplete;
 
 }).call(this);

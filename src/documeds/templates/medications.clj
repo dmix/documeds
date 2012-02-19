@@ -9,7 +9,7 @@
 (defpartial medication-row [{:keys [id name subtitle]}]
   [:li {:id id}
       [:b [:a {:href (str "/medication/show/" id)} name] " "
-          [:a {:href (str "/item/add/" id)} "Add"]]])
+          [:a {:href (str "/items/add/" id)} "Add"]]])
 
 (defpartial medication-list [items]
  (layouts/application

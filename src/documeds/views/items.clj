@@ -1,5 +1,6 @@
 (ns documeds.views.items
-  (:require [documeds.models.medication :as medication]
+  (:require [documeds.models.user :as user]
+            [documeds.models.medication :as medication]
             [documeds.models.item :as item]
             [documeds.templates.layouts :as layouts]
             [documeds.templates.items :as t]
@@ -13,18 +14,22 @@
 
 (defn email [] (sess/get :email))
 
+(pre-route "/items*" []
+  (cond  (not (sess/get :email)) (response/redirect "/login")))
+
 (defpage "/items" {}
   (let [items (item/all (email))]
-    (t/item-list items)))
+    ; (t/item-list items)
+    (response/json items)))
 
-(defpage "/item/add/:medication_id" {:keys [medication_id]}
+(defpage "/items/add/:medication_id" {:keys [medication_id]}
   (let [med (medication/retrieve medication_id)]
     (do 
       (item/add! (email) {:medication_id (med :id) :name (med :name) :dosage 50})
       (layouts/flash! "Item created!")
       (response/redirect "/items"))))
 
-(defpage "/item/delete/:medication_id" {:keys [medication_id]}
+(defpage "/items/delete/:medication_id" {:keys [medication_id]}
   (let [i (item/retrieve (email) medication_id)]
     (item/remove! (email) medication_id)
     (layouts/flash! "Item Removed!")

@@ -12,7 +12,10 @@
       (include-js "/assets/vendor.js")
       (include-js "/assets/autocomplete.js")
       (include-js "/assets/app.js")
+      (include-js "/assets/items.js")
       (include-js "/assets/functions.js")
+      (include-js "/dusts/items/row.js")
+      (include-js "/dusts/autocomplete/result.js")
       (include-css "/css/bootstrap.css")
       (include-css "/css/app.css")]
     [:body
@@ -38,6 +41,7 @@
         [:div.spacer]
         [:div#results
           [:ul#resultsList]]
+        [:ul#itemList]
         content " "
         [:br]]]))
 

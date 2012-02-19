@@ -9,7 +9,7 @@
 (defpartial item-row [{:keys [medication_id name dosage]}]
   [:li {:id medication_id}
       [:b [:a {:href (str "/medication/show/" medication_id)} name] " "
-          [:a {:href (str "/item/delete/" medication_id)} "Remove"]]])
+          [:a {:href (str "/items/delete/" medication_id)} "Remove"]]])
 
 (defpartial item-list [items]
  (layouts/application

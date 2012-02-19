@@ -7,14 +7,17 @@
     Models: {},
     Functions: {},
     init: function() {
+      Backbone.history.start();
+      if (window.location.hash.length === 0) DocuMeds.Controllers.Items.index();
       return false;
     }
   };
 
   $(function() {
     DocuMeds.init();
-    $("#autocomplete").observe_field(1, function() {
-      return Autocomplete.query(this.value);
+    DocuMeds.Functions.applyDefaultText("autocomplete", "Asprin, Valium, Zanax...");
+    return new Autocomplete({
+      input: $("#autocomplete"),
+      results: $('#resultsList')
     });
-    return DocuMeds.Functions.applyDefaultText("autocomplete", "Asprin, Valium, Zanax...");
   });

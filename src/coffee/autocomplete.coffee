@@ -1,7 +1,16 @@
 class Autocomplete
+  constructor: (@fields)->
+    @inserted = []
+    @observe(@fields.input)
+
+  observe: (field) ->
+    that = this
+    field.observe_field(1, ->
+      that.query(this.value)
+    )
+
   query: (q) ->
-    results = $('#results')
-    resultsList = $('#resultsList')
+    that = this
     if q.length > 0 and q != "Asprin, Valium, Zanax..."
       url = "/autocomplete/" + q
       $.ajax({
@@ -9,14 +18,16 @@ class Autocomplete
         contentType: "application/json",
         type: "GET",
         success: (data) ->
-          # console.log(data)
           _.each(data, (result) ->
-            resultsList.append("<li><a href='/medication/show/" + result["id"] + "'>" + result["name"] + "</a></li>")
+            if _.indexOf(that.inserted, result["id"]) == -1
+              dust.render("items_row", result, (err, output) ->
+                that.fields.results.append(output)
+                that.inserted.push(result["id"])
+              )
           )
-          # results.show()
       })
     else
-      resultsList.html("")
-      # results.hide()
+      @fields.results.html("")
 
-this.Autocomplete = new Autocomplete;
+this.Autocomplete = Autocomplete
+ # _.indexOf(d, "one")

@@ -3,6 +3,7 @@
             [documeds.templates.layouts :as layouts]
             [documeds.templates.medications :as t]
             [noir.response :as response]
+            [noir.session :as sess]
             [noir.request :as request])
   (:use noir.core
         hiccup.core
@@ -11,6 +12,9 @@
 
 (defpage "/" {}
   (layouts/landing))
+
+(pre-route "/medications*" []
+  (cond  (not (sess/get :email)) (response/redirect "/login")))
 
 (defpage "/medications" {}
   (let [items (medication/group)]
