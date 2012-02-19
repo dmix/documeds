@@ -12,8 +12,17 @@
       [:b [:a {:href (str "/medication/show/" id)} name] " "
           [:a {:href (str "/items/add/" id)} "Add"]]])
 
-(defpartial main []
- (layouts/application))
+(defpartial main [json]
+ (layouts/application
+  [:script {:type "text/javascript"}
+    (str "$(function() {
+      DocuMeds.Collections.Items.reset(" json ");
+      var view = new DocuMeds.Views.Items({
+        collection: DocuMeds.Collections.Items,
+        el: $('#itemList')
+      })
+      view.render()
+    });")]))
 
 (defpartial medication-list [items]
  (layouts/application

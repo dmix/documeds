@@ -20,6 +20,7 @@
     Autocomplete.prototype.query = function(q) {
       var that, url;
       that = this;
+      this.fields.input.addClass('loading');
       if (q.length > 0 && q !== "Asprin, Valium, Zanax...") {
         url = "/autocomplete/" + q;
         return $.ajax({
@@ -27,7 +28,7 @@
           contentType: "application/json",
           type: "GET",
           success: function(data) {
-            return _.each(data, function(result) {
+            _.each(data, function(result) {
               if (_.indexOf(that.inserted, result["id"]) === -1) {
                 return dust.render("autocomplete_result", result, function(err, output) {
                   that.fields.results.append(output);
@@ -35,10 +36,12 @@
                 });
               }
             });
+            return that.fields.input.removeClass('loading');
           }
         });
       } else {
         this.fields.results.html("");
+        this.fields.input.removeClass('loading');
         return this.inserted = [];
       }
     };

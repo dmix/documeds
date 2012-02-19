@@ -70,6 +70,9 @@ h5 span {
   font-size: 0.9em;
   color: #c3ccd2; }
 
+.hide {
+  display: none; }
+
 .btn {
   font-size: 0.9em;
   padding: 7px 15px 10px 15px;
@@ -98,6 +101,8 @@ label {
     height: 30px;
     width: 400px;
     margin-bottom: 10px; }
+  #search input.loading {
+    background: white url(/img/spinner.gif) no-repeat 95% 10px; }
 
 #flash {
   padding: 10px;
@@ -112,3 +117,45 @@ label {
   font-weight: bold;
   font-size: 1.2em;
   text-transform: uppercase; }
+
+.modal-header h3 {
+  color: #7d7d7d; }
+
+#dosage input, #dosage select {
+  margin: 0 5px; }
+#dosage .modal-body h3 {
+  font-size: 0.9em; }
+#dosage #medName {
+  display: inline; }
+#dosage #mg {
+  width: 27px;
+  font-size: 1.0em;
+  padding: 10px; }
+#dosage #units {
+  width: 27px;
+  font-size: 1.0em;
+  padding: 10px; }
+#dosage #measurements {
+  width: 60px;
+  margin-left: 0px; }
+#dosage #when {
+  width: 80px; }
+
+.nums {
+  display: inline-block;
+  width: 20px;
+  position: relative;
+  top: 17px;
+  margin-top: -13px; }
+  .nums .num {
+    padding: 7px 5px 5px 5px;
+    font-size: 0.7em;
+    text-align: center;
+    line-height: 0px;
+    height: 5px;
+    margin-bottom: 2px;
+    float: left; }
+
+.x {
+  margin-left: 5px;
+  display: inline-block; }

@@ -1,7 +1,7 @@
 class ItemsController extends Backbone.Router
   routes: {
     "items" : "index"
-    "items/add/:id" : "add"
+    "items/add/:id/:name" : "add"
   },
 
   index: ->
@@ -18,7 +18,21 @@ class ItemsController extends Backbone.Router
       view = new DocuMeds.Views.Items({collection: DocuMeds.Collections.Items})
       view.render()
 
-  add: (id) ->
+  add: (id, name) ->
+    dust.render("items_dosage", {id: id, name: name}, (err, output) ->
+      $('#modal').html(output)
+      $('#dosage').modal({
+        backdrop: true,
+        show:true
+      })
+      $('#medName').jTruncate({  
+          length: 10,
+          minTrail: 0,
+          ellipsisText: "..."
+      })
+    )
+
+  create: (id) ->
     DocuMeds.Collections.Items.create({medication_id: id}, {wait: true})
 
 DocuMeds.Controllers.Items = new ItemsController
@@ -27,6 +41,11 @@ DocuMeds.Controllers.Items = new ItemsController
 class Item extends Backbone.Model
   defaults : {}
   name: 'item'
+  initialize: ->
+    cid = @cid
+    this.set({
+      cid: cid
+    })
 
   url: ->
     '/items'

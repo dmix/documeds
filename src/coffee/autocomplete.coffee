@@ -11,6 +11,7 @@ class Autocomplete
 
   query: (q) ->
     that = this
+    @fields.input.addClass('loading')
     if q.length > 0 and q != "Asprin, Valium, Zanax..."
       url = "/autocomplete/" + q
       $.ajax({
@@ -25,9 +26,11 @@ class Autocomplete
                 that.inserted.push(result["id"])
               )
           )
+          that.fields.input.removeClass('loading')
       })
     else
       @fields.results.html("")
+      @fields.input.removeClass('loading')
       @inserted = []
 
 @Autocomplete = Autocomplete

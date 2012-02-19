@@ -12,7 +12,7 @@
 
     ItemsController.prototype.routes = {
       "items": "index",
-      "items/add/:id": "add"
+      "items/add/:id/:name": "add"
     };
 
     ItemsController.prototype.index = function() {
@@ -36,7 +36,25 @@
       }
     };
 
-    ItemsController.prototype.add = function(id) {
+    ItemsController.prototype.add = function(id, name) {
+      return dust.render("items_dosage", {
+        id: id,
+        name: name
+      }, function(err, output) {
+        $('#modal').html(output);
+        $('#dosage').modal({
+          backdrop: true,
+          show: true
+        });
+        return $('#medName').jTruncate({
+          length: 10,
+          minTrail: 0,
+          ellipsisText: "..."
+        });
+      });
+    };
+
+    ItemsController.prototype.create = function(id) {
       return DocuMeds.Collections.Items.create({
         medication_id: id
       }, {
@@ -61,6 +79,14 @@
     Item.prototype.defaults = {};
 
     Item.prototype.name = 'item';
+
+    Item.prototype.initialize = function() {
+      var cid;
+      cid = this.cid;
+      return this.set({
+        cid: cid
+      });
+    };
 
     Item.prototype.url = function() {
       return '/items';

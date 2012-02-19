@@ -1,5 +1,6 @@
 (ns documeds.views.medications
   (:require [documeds.models.medication :as medication]
+            [documeds.models.item :as item]
             [documeds.templates.layouts :as layouts]
             [documeds.templates.medications :as t]
             [noir.response :as response]
@@ -10,6 +11,8 @@
         hiccup.page-helpers
         hiccup.form-helpers))
 
+(defn email [] (sess/get :email))
+
 (defpage "/" {}
   (layouts/landing))
 
@@ -17,7 +20,9 @@
   (cond  (not (sess/get :email)) (response/redirect "/login")))
 
 (defpage "/medications" {}
-  (t/main))
+  (let [items (item/all (email))]
+    ; (t/item-list items)
+    (t/main (:body (response/json items)))))
 
 (defpage "/medications/all" {}
   (let [items (medication/index)]

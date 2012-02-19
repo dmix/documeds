@@ -8,14 +8,14 @@
 
 (defn javascript-assets []
   (if (options/dev-mode?)
-    (include-js "/assets/vendor.js"
-                "/assets/autocomplete.js"
+    (include-js "/assets/autocomplete.js"
                 "/assets/app.js"
                 "/assets/items.js"
                 "/assets/functions.js"
                 "/dusts/items/row.js"
+                "/dusts/items/dosage.js"
                 "/dusts/autocomplete/result.js")
-    (include-js "/assets/vendor.js" "/assets/production.js")))
+    (include-js "/assets/production.js")))
 
 (defn css-assets []
   (if (options/dev-mode?)
@@ -26,6 +26,7 @@
 (defpartial application [& content]
   (html5
     [:head
+      (include-js "/assets/vendor.js")
       [:title "Medication Tracker | DocuMeds"]
       (css-assets)]
     [:body
@@ -41,6 +42,7 @@
             [:div#name (sess/get :email)]
             ])
       ]
+      [:div#modal]
       [:div#wrapper
         (when-let [message (sess/flash-get)]
           [:div#flash message])
