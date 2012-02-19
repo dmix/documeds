@@ -1,23 +1,33 @@
 (ns documeds.templates.layouts
-  (:require [noir.session :as sess])
+  (:require [noir.session :as sess]
+            [noir.options :as options])
   (:use noir.core
         hiccup.core
         hiccup.page-helpers
         hiccup.form-helpers))
 
+(defn javascript-assets []
+  (if (options/dev-mode?)
+    (include-js "/assets/vendor.js"
+                "/assets/autocomplete.js"
+                "/assets/app.js"
+                "/assets/items.js"
+                "/assets/functions.js"
+                "/dusts/items/row.js"
+                "/dusts/autocomplete/result.js")
+    (include-js "/assets/vendor.js" "/assets/production.js")))
+
+(defn css-assets []
+  (if (options/dev-mode?)
+    (include-css "/css/bootstrap.css"
+                 "/css/app.css")
+    (include-css "/assets/production.css")))
+
 (defpartial application [& content]
   (html5
     [:head
       [:title "Medication Tracker | DocuMeds"]
-      (include-js "/assets/vendor.js")
-      (include-js "/assets/autocomplete.js")
-      (include-js "/assets/app.js")
-      (include-js "/assets/items.js")
-      (include-js "/assets/functions.js")
-      (include-js "/dusts/items/row.js")
-      (include-js "/dusts/autocomplete/result.js")
-      (include-css "/css/bootstrap.css")
-      (include-css "/css/app.css")]
+      (css-assets)]
     [:body
       [:div#top
         (if-not (sess/get :email)
@@ -43,7 +53,8 @@
           [:ul#resultsList]]
         [:ul#itemList]
         content " "
-        [:br]]]))
+        [:br]]
+        (javascript-assets)]))
 
 (defpartial landing []
   (html5

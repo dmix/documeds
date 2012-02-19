@@ -6,3 +6,4 @@ lib
 .lein-deps-sum
 *.DS_Store
 *.swp
+/public/

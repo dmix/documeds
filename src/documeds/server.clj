@@ -12,3 +12,5 @@
         port (Integer. (get (System/getenv) "PORT" "5000"))]
     (server/start port {:mode (keyword mode)
                         :ns 'documeds})))
+
+; lein run -m documeds.server :prod

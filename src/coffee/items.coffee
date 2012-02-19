@@ -23,6 +23,7 @@ class ItemsController extends Backbone.Router
 
 DocuMeds.Controllers.Items = new ItemsController
 
+
 class Item extends Backbone.Model
   defaults : {}
   name: 'item'
@@ -41,6 +42,7 @@ class Items extends Backbone.Collection
 
 DocuMeds.Collections.Items = new Items
 
+
 class ItemView extends Backbone.View
   initialize: (options) ->
     @render = _.bind(@render, this); 
@@ -52,6 +54,7 @@ class ItemView extends Backbone.View
       that.el = output
     )
     return this
+
 
 class ItemsView extends Backbone.View
   initialize: ->

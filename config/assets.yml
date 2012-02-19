@@ -1,6 +1,6 @@
 package_path: ../resources/public/assets
-compress_assets: off
-# javascript_compressor: closure
+compress_assets: on
+javascript_compressor: closure
 
 javascripts:
   vendor:
@@ -9,3 +9,16 @@ javascripts:
     - resources/public/assets/vendor/underscore.js
     - resources/public/assets/vendor/backbone.js
     - resources/public/assets/vendor/dust.js
+
+  production:
+    - resources/public/assets/autocomplete.js
+    - resources/public/assets/app.js
+    - resources/public/assets/items.js
+    - resources/public/assets/functions.js
+    - resources/public/dusts/items/row.js
+    - resources/public/dusts/autocomplete/result.js
+
+stylesheets:
+  production:
+    - resources/public/css/bootstrap.css
+    - resources/public/css/app.css
