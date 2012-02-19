@@ -22,6 +22,12 @@
     ; (t/item-list items)
     (response/json items)))
 
+(defpage [:post "/items"] {:as item}
+  (let [medication_id (:medication_id (:backbone item))
+        med (medication/retrieve medication_id)]
+    (item/add! (email) {:medication_id (med :id) :name (med :name) :dosage 50})
+    (response/json med)))
+
 (defpage "/items/add/:medication_id" {:keys [medication_id]}
   (let [med (medication/retrieve medication_id)]
     (do 

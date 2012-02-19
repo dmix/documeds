@@ -8,7 +8,7 @@
     Functions: {},
     init: function() {
       Backbone.history.start();
-      if (window.location.hash.length === 0) DocuMeds.Controllers.Items.index();
+      DocuMeds.Controllers.Items.index();
       return false;
     }
   };

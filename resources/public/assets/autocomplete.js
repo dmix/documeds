@@ -29,7 +29,7 @@
           success: function(data) {
             return _.each(data, function(result) {
               if (_.indexOf(that.inserted, result["id"]) === -1) {
-                return dust.render("items_row", result, function(err, output) {
+                return dust.render("autocomplete_result", result, function(err, output) {
                   that.fields.results.append(output);
                   return that.inserted.push(result["id"]);
                 });

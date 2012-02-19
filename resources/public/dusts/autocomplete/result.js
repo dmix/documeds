@@ -1,1 +1,1 @@
-(function(){dust.register("autocomplete_result",body_0);function body_0(chk,ctx){return chk.write("<li><a href='/medication/show/").reference(ctx.get("id"),ctx,"h").write("'>").reference(ctx.get("name"),ctx,"h").write("</a></li>");}return body_0;})();
+(function(){dust.register("autocomplete_result",body_0);function body_0(chk,ctx){return chk.write("<li><a href='/medication/show/").reference(ctx.get("id"),ctx,"h").write("'>").reference(ctx.get("name"),ctx,"h").write("</a> <a href=\"#items/add/").reference(ctx.get("id"),ctx,"h").write("\">Add</a></li>");}return body_0;})();

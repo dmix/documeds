@@ -1,6 +1,7 @@
 class ItemsController extends Backbone.Router
   routes: {
     "items" : "index"
+    "items/add/:id" : "add"
   },
 
   index: ->
@@ -17,6 +18,9 @@ class ItemsController extends Backbone.Router
       view = new DocuMeds.Views.Items({collection: DocuMeds.Collections.Items})
       view.render()
 
+  add: (id) ->
+    DocuMeds.Collections.Items.create({medication_id: id}, {wait: true})
+
 DocuMeds.Controllers.Items = new ItemsController
 
 class Item extends Backbone.Model
@@ -24,7 +28,7 @@ class Item extends Backbone.Model
   name: 'item'
 
   url: ->
-    DocuMeds.Url + '/items'
+    '/items'
 
 DocuMeds.Models.Item = Item
 
@@ -36,7 +40,6 @@ class Items extends Backbone.Collection
     '/items'
 
 DocuMeds.Collections.Items = new Items
-# DocuMeds.Collections.Items.create({dosage: "50", name: "One", medication_id: "60"})
 
 class ItemView extends Backbone.View
   initialize: (options) ->

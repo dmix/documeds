@@ -1,14 +1,8 @@
 @DocuMeds = {
-  Url: null,
-  Views: {},
-  Controllers: {},
-  Collections: {},
-  Models: {},
-  Functions: {}
+  Url: null, Views: {}, Controllers: {}, Collections: {}, Models: {}, Functions: {}
   init: ->
     Backbone.history.start()
-    if window.location.hash.length == 0
-      DocuMeds.Controllers.Items.index()
+    DocuMeds.Controllers.Items.index()
     return false
 }
 

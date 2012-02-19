@@ -11,7 +11,8 @@
     }
 
     ItemsController.prototype.routes = {
-      "items": "index"
+      "items": "index",
+      "items/add/:id": "add"
     };
 
     ItemsController.prototype.index = function() {
@@ -35,6 +36,14 @@
       }
     };
 
+    ItemsController.prototype.add = function(id) {
+      return DocuMeds.Collections.Items.create({
+        medication_id: id
+      }, {
+        wait: true
+      });
+    };
+
     return ItemsController;
 
   })();
@@ -54,7 +63,7 @@
     Item.prototype.name = 'item';
 
     Item.prototype.url = function() {
-      return DocuMeds.Url + '/items';
+      return '/items';
     };
 
     return Item;
