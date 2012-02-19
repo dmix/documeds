@@ -23,8 +23,9 @@
             [:a {:href "/signup"} "Sign Up"]]
           [:div#loggedin
             [:a {:href "/logout"} "Log Out"]
+            [:a {:href "/items"} "My Items"]
+            [:a {:href ""} [:img {:src (str "/img/country/" (clojure.string/lower-case (sess/get :country)) ".png")}]]
             [:div#name (sess/get :email)]
-            [:img {:src (str "/img/country/" (clojure.string/lower-case (sess/get :country)) ".png")}]
             ])
       ]
       [:div#wrapper
@@ -38,8 +39,7 @@
         [:div#results
           [:ul#resultsList]]
         content " "
-        [:br]
-        [:a.btn.btn-primary {:href "/medication/new"} "New Medication"]]]))
+        [:br]]]))
 
 (defpartial landing []
   (html5

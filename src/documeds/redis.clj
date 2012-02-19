@@ -31,6 +31,12 @@
 (def key-database     "clomate-data:")
 (def key-cachebase    "clomate-cache:")
 
+
+; Item Keys ---------------------------------------------------------
+(defn key-item [email medication_id] (str "items:" email ":" medication_id)) ; items:dan@dmix.ca:1000 = hash
+(defn key-items-index [email] (str "items:" email)) ; items:dan@dmix.ca = seq of item ids
+
+
 (defn redis-has-key [redis-key]
   (= @(@r [:exists redis-key]) 1))
   

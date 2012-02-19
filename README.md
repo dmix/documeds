@@ -28,6 +28,8 @@ Also run Redis on localhost, default port with no password.
 
 ## License
 
-Developing in the open until full public launch when the code will become closed source.
+Developing in the open until full public launch later in the year.
 
-Copyright (C) 2012 Dan McGrady
+View online at https://documeds.com
+
+Copyright (C) 2012 Dan McGrady http://dmix.ca

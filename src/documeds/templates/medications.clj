@@ -8,18 +8,17 @@
 
 (defpartial medication-row [{:keys [id name subtitle]}]
   [:li {:id id}
-      [:b [:a {:href (str "/medication/show/" id)} name]]])
+      [:b [:a {:href (str "/medication/show/" id)} name] " "
+          [:a {:href (str "/item/add/" id)} "Add"]]])
 
 (defpartial medication-list [items]
  (layouts/application
     [:h2 "Medication list"]
     [:br]
     [:ul#medications
-        (map medication-row items)]))
-
-(defpartial medication-removed []
-  (layouts/application
-    [:p "Medication removed!"]))
+        (map medication-row items)]
+    [:br]
+    [:a.btn.btn-primary {:href "/medication/new"} "New Medication"]))
 
 (defpartial show-medication [med]
   (layouts/application

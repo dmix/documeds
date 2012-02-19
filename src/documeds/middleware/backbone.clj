@@ -1,4 +1,5 @@
-(ns documeds.middleware.backbone)
+(ns documeds.middleware.backbone
+    (:use [cheshire.core :as json]))
 
 (defn add-json-param [handler]
   (fn [req]
