@@ -1,5 +1,6 @@
 (ns documeds.templates.medications
-  (:require [noir.validation :as validation]
+  (:require [documeds.models.medication :as medication]
+            [noir.validation :as validation]
             [documeds.templates.layouts :as layouts])
   (:use noir.core
         hiccup.core
@@ -11,6 +12,9 @@
       [:b [:a {:href (str "/medication/show/" id)} name] " "
           [:a {:href (str "/items/add/" id)} "Add"]]])
 
+(defpartial main []
+ (layouts/application))
+
 (defpartial medication-list [items]
  (layouts/application
     [:h2 "Medication list"]
@@ -19,6 +23,30 @@
         (map medication-row items)]
     [:br]
     [:a.btn.btn-primary {:href "/medication/new"} "New Medication"]))
+
+(defpartial alpha-row [id]
+  (let [name (medication/denormalize id)]
+    [:li {:id id}
+        [:b [:a {:href (str "/medication/show/" id)} name] " "
+            [:a {:href (str "/items/add/" id)} "Add"]]]))
+
+(defpartial letter-button [letter]
+  [:a {:href (str "/medications/letter/" letter)} letter])
+
+(defpartial alpha-list [letter items]
+  (let [letters (map char (concat (range 97 123)))]
+    (layouts/application
+      [:h2 (str "Medication list: " letter)]
+      [:br]
+      [:div#letters 
+        [:a {:href "/medications/all"} "All"]
+        (map letter-button letters)]
+      [:br]
+      [:br]    
+      [:ul#medications
+        (map alpha-row items)]
+      [:br]
+      [:a.btn.btn-primary {:href "/medication/new"} "New Medication"])))
 
 (defpartial show-medication [med]
   (layouts/application

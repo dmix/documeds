@@ -16,6 +16,17 @@
 (defn increment []
   @(@r [:incr (key-increment-medications)]))
 
+(defn slug [phrase]
+  (clojure.string/trim
+    (clojure.string/lower-case
+      (clojure.string/replace
+        (clojure.string/replace phrase #" " "_") 
+          #"[^a-z0-9 ]/i" ""))))
+
+(defn denormalize [id]
+  (clojure.string/capitalize
+    (clojure.string/replace id #"_" " ")))
+
 ; Getters ------------------------------------------------------------------------
 
 (defn retrieve [id]
@@ -56,7 +67,7 @@
 ; Setters ------------------------------------------------------------------------
 
 (defn add! [m]
-  (let [id (increment)]
+  (let [id (slug (:name m))]
     (add-index id) ; Add id to medications seq of IDs
     @(@r [:hmset (key-medication id) "id" id 
                                      "name" (:name m)
@@ -71,8 +82,7 @@
                                      "brand_names" (:brand_names m)
                                      ; "brand_names_combo" (:brand_names_combo m)
                                      "overdose" (:overdose m)
-                                     "if_i_forget" (:if_i_forget m)
-                                     "slug" (:slug m)])))
+                                     "if_i_forget" (:if_i_forget m)])))
 
 (defn add-multiple [medications]
   (dorun (map add! medications)))
@@ -100,3 +110,26 @@
   (validation/rule (validation/has-value? dosage)
       [:dosage "You must set a dosage"])
   (not (validation/errors? :title :dosage)))
+
+(defn rename-model [model]
+  (add! model)
+  (remove! model))
+
+(defn rename []
+  (let [models (all)]
+    (map rename-model models)))
+
+; Alphabetical Indexes ----------------------------------------------------------------------
+
+(defn add-alpha-index [model]
+  (let [id (:id model)
+        letter (subs id 0 1)
+        redis-key (key-alpha-index letter)]
+        (@r [:sadd redis-key id])))
+
+(defn build-alpha-index []
+  (let [models (all)]
+    (map add-alpha-index models)))
+
+(defn alpha-index [letter]
+  @(@r [:smembers (key-alpha-index letter)]))

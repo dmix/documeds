@@ -105,3 +105,10 @@ label {
   background: #FFF;
   border: 1px solid #ccc;
   margin-bottom: 10px; }
+
+#letters a {
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-transform: uppercase; }

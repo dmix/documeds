@@ -28,6 +28,6 @@ class Autocomplete
       })
     else
       @fields.results.html("")
+      @inserted = []
 
-this.Autocomplete = Autocomplete
- # _.indexOf(d, "one")
+@Autocomplete = Autocomplete

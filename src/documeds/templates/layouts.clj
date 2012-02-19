@@ -36,7 +36,7 @@
             [:a {:href "/signup"} "Sign Up"]]
           [:div#loggedin
             [:a {:href "/logout"} "Log Out"]
-            [:a {:href "/items"} "My Items"]
+            [:a {:href "/medications/letter/a"} "All Medications"]
             [:a {:href ""} [:img {:src (str "/img/country/" (clojure.string/lower-case (sess/get :country)) ".png")}]]
             [:div#name (sess/get :email)]
             ])

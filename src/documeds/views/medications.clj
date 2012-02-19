@@ -17,8 +17,15 @@
   (cond  (not (sess/get :email)) (response/redirect "/login")))
 
 (defpage "/medications" {}
-  (let [items (medication/group)]
-    (t/medication-list items)))
+  (t/main))
+
+(defpage "/medications/all" {}
+  (let [items (medication/index)]
+    (t/alpha-list "ALL" items)))
+
+(defpage "/medications/letter/:letter" {:keys [letter]}
+  (let [items (medication/alpha-index letter)]
+    (t/alpha-list letter items)))
 
 (defpage "/medication/new" {:as med}
   (t/new-medication med))

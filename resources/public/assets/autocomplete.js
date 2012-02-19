@@ -38,7 +38,8 @@
           }
         });
       } else {
-        return this.fields.results.html("");
+        this.fields.results.html("");
+        return this.inserted = [];
       }
     };
 

@@ -18,9 +18,10 @@
 (defn key-medication [id] (str "medications:" id))
 (defn key-medications-index [] "medications")
 (defn key-increment-medications [] "global:nextMedicationID")
+(defn key-alpha-index [letter] (str "medications:alpha:" letter))
 
 
-; Medication Model Keys --------------------------------------------
+; User Model Keys --------------------------------------------
 (defn key-user [id] (str "users:" id))
 (defn key-users-index [] "users")
 (defn key-increment-users [] "global:nextUserID")
