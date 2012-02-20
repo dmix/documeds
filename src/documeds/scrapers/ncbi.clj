@@ -71,12 +71,13 @@
         sub-name (parse-name url-data :.title_addtn)
         base { :name med-name :subtitle sub-name }
         id (id-of-sections url-data)]
-    (into {} 
-      (map (fn [attribute]
-        (let [parsed (parse-section id url-data (last attribute))]
-          (if-not (= parsed "")
-            {(first attribute) parsed}))) 
-        attributes))))
+    (merge base
+      (into {} 
+        (map (fn [attribute]
+          (let [parsed (parse-section id url-data (last attribute))]
+            (if-not (= parsed "")
+              {(first attribute) parsed}))) 
+          attributes)))))
 
 (defn set-info [med]
   (medication/add! med))
