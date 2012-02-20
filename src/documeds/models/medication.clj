@@ -79,7 +79,7 @@
                                      "precautions" (:precautions m)
                                      "dietary" (:dietary m)
                                      "brand_names" (:brand_names m)
-                                     ; "brand_names_combo" (:brand_names_combo m)
+                                     "brand_names_combo" (:brand_names_combo m)
                                      "overdose" (:overdose m)
                                      "if_i_forget" (:if_i_forget m)])))
 
