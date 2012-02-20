@@ -1,14 +1,12 @@
 
   this.DocuMeds = {
-    Url: null,
     Views: {},
     Controllers: {},
     Collections: {},
     Models: {},
     Functions: {},
     init: function() {
-      Backbone.history.start();
-      return false;
+      return Backbone.history.start();
     }
   };
 

@@ -154,7 +154,6 @@ class Soulmate
     
     {url, types, renderCallback, selectCallback, maxResults, minQueryLength, timeout} = options
 
-    
     @url              = url
     @types            = types
     @maxResults       = maxResults
@@ -246,21 +245,16 @@ class Soulmate
     )
 
   fetchResults: ->
-    # Cancel any previous requests if there are any.
+    $('#autocomplete').addClass('loading')
     @xhr.abort() if @xhr?
     
     @xhr = $.ajax({
       url: @url + @query.getValue()
       contentType: "application/json",
       type: "GET",
-      # timeout: @timeout
-      # cache: true
-      # data: {
-      #   types: @types
-      #   limit: @maxResults
-      # }
       success: (data) =>
         @update( data.results )
+        $('#autocomplete').removeClass('loading')
     })
 
   update: (results) ->

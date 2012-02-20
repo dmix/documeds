@@ -308,13 +308,15 @@
 
     Soulmate.prototype.fetchResults = function() {
       var _this = this;
+      $('#autocomplete').addClass('loading');
       if (this.xhr != null) this.xhr.abort();
       return this.xhr = $.ajax({
         url: this.url + this.query.getValue(),
         contentType: "application/json",
         type: "GET",
         success: function(data) {
-          return _this.update(data.results);
+          _this.update(data.results);
+          return $('#autocomplete').removeClass('loading');
         }
       });
     };
