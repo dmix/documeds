@@ -1,5 +1,6 @@
 package_path: ../resources/public/assets
 compress_assets: on
+gzip_assets: off
 javascript_compressor: closure
 
 javascripts:

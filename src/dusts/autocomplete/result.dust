@@ -1,1 +1,4 @@
-<li><a href='/medication/show/{id}'>{name}</a> <a href="#items/add/{id}/{name}">Add</a></li>
+<li>
+  <a href="#items/add/{id}/{name}" class="right add">Add</a>
+  <a href='/medication/show/{id}'>{name}</a>
+</li>

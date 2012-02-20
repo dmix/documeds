@@ -1,1 +1,4 @@
-<li>{name}</li>
+<tr>
+  <td>{name}</td>
+  <td><a href="#">Remove</a></td>
+</tr>

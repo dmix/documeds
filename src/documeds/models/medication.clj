@@ -33,7 +33,6 @@
   {
     :id @(@r [:hget (key-medication id) "id"])
     :name @(@r [:hget (key-medication id) "name"])
-    :subtitle "subtitle"
   })
   ; (let [m (apply hash-map @(@r [:hgetall (key-medication id)]))]
   ;   (when (not (empty? m))

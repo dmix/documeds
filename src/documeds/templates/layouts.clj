@@ -40,20 +40,18 @@
             [:a {:href "/medications/letter/a"} "All Medications"]
             [:a {:href ""} [:img {:src (str "/img/country/" (clojure.string/lower-case (sess/get :country)) ".png")}]]
             [:div#name (sess/get :email)]
-            ])
-      ]
+            ])]
       [:div#modal]
       [:div#wrapper
         (when-let [message (sess/flash-get)]
           [:div#flash message])
         [:a {:href "/medications" :id "logo"} [:img {:src "/img/logo.png"}]]
         [:div#search
-          [:input {:class "text" :id "autocomplete" :type "text"}]
+          [:input {:class "text" :id "autocomplete" :type "text" :autocomplete "off" :name "q"}]
           [:button {:class "btn btn-primary"} "Go"]]
         [:div.spacer]
         [:div#results
           [:ul#resultsList]]
-        [:ul#itemList]
         content " "
         [:br]]
         (javascript-assets)]))

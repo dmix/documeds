@@ -14,15 +14,13 @@
 
 (defpartial main [json]
  (layouts/application
+  [:h2 "My Medication List"]
+  [:table#items.table-striped
+    [:thead
+      [:tr [:th "Medication"] [:th "Action"]]]
+    [:tbody#itemList]]
   [:script {:type "text/javascript"}
-    (str "$(function() {
-      DocuMeds.Collections.Items.reset(" json ");
-      var view = new DocuMeds.Views.Items({
-        collection: DocuMeds.Collections.Items,
-        el: $('#itemList')
-      })
-      view.render()
-    });")]))
+    (str "$(function() {DocuMeds.Collections.Items.reset(" json ");var view = new DocuMeds.Views.Items({collection: DocuMeds.Collections.Items,el: $('#itemList')});view.render();});")]))
 
 (defpartial medication-list [items]
  (layouts/application

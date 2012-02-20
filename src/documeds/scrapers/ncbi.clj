@@ -58,7 +58,7 @@
     :precautions (parse-section id url-data "-precautions")
     :dietary (parse-section id url-data "-specialDietary")
     :brand_names (parse-section id url-data "-brandNames")
-    ; :brand_names_combo (parse-section id url-data "-brandNamesCombo")
+    :brand_names_combo (parse-section id url-data "-brandNamesCombo")
     :overdose (parse-section id url-data "-overdose")
     :if_i_forget (parse-section id url-data "-ifIForget")
     :slug (clojure.string/replace (clojure.string/replace (clojure.string/lower-case med-name) #"[^0-9a-z ]/i" "") " " "_")

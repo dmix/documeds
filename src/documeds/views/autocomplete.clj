@@ -7,4 +7,5 @@
 
 (defpage "/autocomplete/:query" {:keys [query]}
   (let [matches (matches-for-term query)]
-  (response/json matches)))
+  (println matches)
+  (response/json {:term query :results { :medication matches }})))

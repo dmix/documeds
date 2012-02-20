@@ -13,11 +13,22 @@
   };
 
   $(function() {
+    var render, select;
     DocuMeds.init();
     DocuMeds.Functions.applyDefaultText("autocomplete", "Asprin, Valium, Zanax...");
-    new Autocomplete({
-      input: $("#autocomplete"),
-      results: $('#resultsList')
+    render = function(term, data, type) {
+      return term;
+    };
+    select = function(term, data, type) {
+      return console.log("Selected " + term);
+    };
+    $('#autocomplete').soulmate({
+      url: "/autocomplete/",
+      types: ["medication"],
+      renderCallback: render,
+      selectCallback: select,
+      minQueryLength: 2,
+      maxResults: 5
     });
     $('.numUp').live('click', function() {
       var el, val;

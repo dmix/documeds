@@ -10,10 +10,23 @@ $ ->
   DocuMeds.init()
   DocuMeds.Functions.applyDefaultText("autocomplete", "Asprin, Valium, Zanax...")
 
-  new Autocomplete({
-    input: $("#autocomplete")
-    results: $('#resultsList')
+  render = (term, data, type) -> term
+  select = (term, data, type) -> console.log("Selected #{term}")
+
+  $('#autocomplete').soulmate({
+    url:            "/autocomplete/"
+    types:          ["medication"]
+    renderCallback: render
+    selectCallback: select
+    minQueryLength: 2
+    maxResults:     5
   })
+  
+  # new Autocomplete({
+  #   input: $("#autocomplete")
+  #   results: $('#results')
+  #   resultsList: $('#resultsList')
+  # })
   # $('#dosage').modal('toggle')
   
   $('.numUp').live('click', ->

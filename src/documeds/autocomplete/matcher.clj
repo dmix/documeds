@@ -4,7 +4,7 @@
         documeds.redis
         [documeds.models.medication :as medication]))
 
-(def limit 10)
+(def limit 5)
 
 (defn validate-term-length [term]
   "Make sure the query is within the length limits before executing search"
