@@ -1,10 +1,14 @@
-a {
-  color: #3996d0; }
+html {
+  background: url("/img/blue.png"); }
 
 body {
-  background: url("/img/bg.png");
+  background: url("/img/background.png");
   color: #959da2;
-  font-size: 1.1em; }
+  font-size: 1.1em;
+  min-height: 773px; }
+
+a {
+  color: #3996d0; }
 
 .right {
   float: right; }
@@ -70,8 +74,7 @@ h5 span {
   padding-top: 200px; }
 
 .small {
-  font-size: 0.9em;
-  color: #c3ccd2; }
+  font-size: 0.9em; }
 
 .hide {
   display: none; }
@@ -255,3 +258,38 @@ label {
       display: table; }
     #soulmate .soulmate-type:after {
       clear: both; }
+
+#logoBox {
+  width: 480px;
+  height: 310px;
+  position: relative;
+  top: 100px;
+  margin: auto;
+  background: url("/img/paper.png"); }
+  #logoBox #early {
+    display: block;
+    background: url("/img/button.png") 0 0;
+    height: 45px;
+    width: 176px;
+    position: relative;
+    top: 200px;
+    margin: auto; }
+  #logoBox #early:hover {
+    background: url("/img/button.png") 0 45px; }
+  #logoBox #early:active {
+    opacity: 0.8; }
+
+#documeds {
+  position: absolute;
+  top: 465px;
+  left: 50%;
+  margin-left: -111px;
+  width: 223px; }
+
+#github {
+  width: 400px;
+  position: absolute;
+  top: 700px;
+  left: 50%;
+  margin-left: -200px;
+  color: #a4b0b7; }

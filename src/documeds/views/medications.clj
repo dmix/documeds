@@ -4,6 +4,7 @@
             [documeds.templates.layouts :as layouts]
             [documeds.templates.medications :as t]
             [noir.response :as response]
+            [noir.options :as options]
             [noir.session :as sess]
             [noir.request :as request])
   (:use noir.core
@@ -13,8 +14,15 @@
 
 (defn email [] (sess/get :email))
 
+(defn https-url [request-url]
+  (str "https://" (:server-name request-url) (:uri request-url)))
+
 (defpage "/" {}
-  (layouts/landing))
+  (if (= (:scheme (request/ring-request)) :http)
+    (if (options/dev-mode?)
+      (layouts/landing)
+      (response/redirect (https-url (request/ring-request))))
+    (layouts/landing)))
 
 (pre-route "/medications*" []
   (cond  (not (sess/get :email)) (response/redirect "/login")))

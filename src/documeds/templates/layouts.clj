@@ -6,6 +6,13 @@
         hiccup.page-helpers
         hiccup.form-helpers))
 
+(defn country []
+  (let [country (sess/get :country)])
+    (clojure.string/lower-case
+      (if (nil? country)
+        "CA"
+        country)))
+
 (defn javascript-assets []
   (if (options/dev-mode?)
     (include-js "/assets/autocomplete.js"
@@ -38,9 +45,8 @@
           [:div#loggedin
             [:a {:href "/logout"} "Log Out"]
             [:a {:href "/medications/letter/a"} "All Medications"]
-            [:a {:href ""} [:img {:src (str "/img/country/" (clojure.string/lower-case (sess/get :country)) ".png")}]]
-            [:div#name (sess/get :email)]
-            ])]
+            [:a {:href ""} [:img {:src (str "/img/country/" (country) ".png")}]]
+            [:div#name (sess/get :email)]])]
       [:div#modal]
       [:div#wrapper
         (when-let [message (sess/flash-get)]
@@ -63,14 +69,25 @@
       (include-css "/css/bootstrap.css")
       (include-css "/css/app.css")]
     [:body
-      [:div#central
-        [:img {:src "/img/logo.png"}]
-        [:br][:br][:br][:br]
-        [:h5 "Helping to make taking medication
-              <span>safer</span>,<br> more <span>effective</span> & <span>anxiety-free</span>."]
-        [:br][:br][:br][:br][:br][:br]
-        [:div.small "Follow development on "
-          [:a {:href "https://github.com/dmix/documeds"} "Github"]]]]))
+      [:div#top
+        (if-not (sess/get :email)
+          [:div#loggedout
+            [:a {:href "/login"} "Log In"] " "
+            [:a {:href "/blog"} "Blog"]
+            [:a {:href "/blog"} "Twitter"]]
+          [:div#loggedin
+            [:a {:href "/logout"} "Log Out"]
+            [:a {:href "/medications/letter/a"} "All Medications"]
+            [:a {:href ""} [:img {:src (str "/img/country/" (country) ".png")}]]
+            [:div#name (sess/get :email)]])]
+      [:div#landing
+        [:div#logoBox
+          [:a {:href "#" :id "early"}]]
+        [:img {:src "/img/documeds.png" :id "documeds"}]
+        [:div#github.small "Follow development on "
+          [:a {:href "https://github.com/dmix/documeds"} "Github"]
+          " and updates on "
+          [:a {:href "https://github.com/dmix/documeds"} "Twitter"]]]]))
 
 (defn flash! [message]
   (sess/flash-put! message)

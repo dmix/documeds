@@ -1,3 +1,9 @@
+html {background:url('/img/blue.png');}
+body {background:url('/img/background.png');color:#959da2;font-size:1.1em;min-height:773px;}
+
+a {color:#3996d0;}
+
+
 @mixin border-radius($radius){
   -webkit-border-radius: $radius;
 	-moz-border-radius: $radius;
@@ -35,8 +41,6 @@
   }
 }
 
-a {color:#3996d0;}
-body {background:url('/img/bg.png');color:#959da2;font-size:1.1em;}
 .right {float:right;}
 #top {
   background:#FFF;height:32px;
@@ -54,7 +58,7 @@ h1 span {color:#A2ABB1;}
 h5 {font-size:1.2em;color:#c3ccd2;line-height:1.2em;margin-bottom:0.6em;}
 h5 span {color:#abb3b8;}
 #central {text-align:center;padding-top:200px;}
-.small {font-size:0.9em;color:#c3ccd2;}
+.small {font-size:0.9em;}
 .hide {display:none;}
 .btn {font-size:0.9em;padding:7px 15px 10px 15px;font-weight:bold;}
 input {padding:7px 10px;}
@@ -181,3 +185,36 @@ $soulmateWidth: $inputWidth + 21px;
   }
   
 }
+
+
+#logoBox {
+  width:480px;
+  height:310px;
+  position:relative;
+  top:100px;
+  margin:auto;
+  background:url('/img/paper.png');
+  #early {
+    display:block;
+    background:url('/img/button.png') 0 0;
+    height:45px;
+    width:176px;
+    position:relative;
+    top:200px;
+    margin:auto;
+  }
+  #early:hover {
+    background:url('/img/button.png') 0 45px;
+  }
+  #early:active {
+    opacity:0.8; }
+}
+
+#documeds {
+  position:absolute;
+  top:465px;
+  left:50%;
+  margin-left:-111px;
+  width:223px;
+}
+#github {width:400px;position:absolute;top:700px;left:50%;margin-left:-200px;color:#a4b0b7;}
