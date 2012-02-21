@@ -4,8 +4,8 @@
             [documeds.templates.layouts :as layouts]
             [documeds.templates.medications :as t]
             [noir.response :as response]
-            [noir.session :as sess]
-            [noir.request :as request])
+            [noir.request :as request]
+            [noir.session :as sess])
   (:use noir.core
         hiccup.core
         hiccup.page-helpers
