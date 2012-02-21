@@ -14,6 +14,7 @@
 
 (defn email [] (sess/get :email))
 
+
 (pre-route "/items*" []
   (cond  (not (sess/get :email)) (response/redirect "/login")))
 
