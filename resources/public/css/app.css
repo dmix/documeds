@@ -14,9 +14,9 @@ a {
   float: right; }
 
 #top {
-  background: #FFF;
-  height: 32px;
-  padding: 5px 15px; }
+  background: white url(/img/shadow.png) 0 39px repeat-x;
+  height: 34px;
+  padding: 5px 10px; }
   #top #name {
     font-weight: bold;
     position: relative;
@@ -263,7 +263,7 @@ label {
   width: 480px;
   height: 310px;
   position: relative;
-  top: 100px;
+  top: 70px;
   margin: auto;
   background: url("/img/paper.png"); }
   #logoBox #early {
@@ -281,15 +281,15 @@ label {
 
 #documeds {
   position: absolute;
-  top: 465px;
+  top: 385px;
   left: 50%;
-  margin-left: -111px;
+  margin-left: -121px;
   width: 223px; }
 
 #github {
   width: 400px;
   position: absolute;
-  top: 700px;
+  top: 630px;
   left: 50%;
   margin-left: -200px;
   color: #a4b0b7; }

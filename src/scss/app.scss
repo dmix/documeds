@@ -43,8 +43,9 @@ a {color:#3996d0;}
 
 .right {float:right;}
 #top {
-  background:#FFF;height:32px;
-  padding:5px 15px;
+  background:#FFF url(/img/shadow.png) 0 39px repeat-x;
+  height:34px;
+  padding:5px 10px;
   #name {font-weight:bold;position:relative;top:6px;float:right;margin-right:10px;}
   a {padding:7px 10px;display:block;background:#f1f1f1;float:right;color:#333;margin-right:3px;font-size:.9em;font-weight:bold;border-radius:3px;}
   a:hover {text-decoration:none;background:#ccc;}
@@ -191,7 +192,7 @@ $soulmateWidth: $inputWidth + 21px;
   width:480px;
   height:310px;
   position:relative;
-  top:100px;
+  top:70px;
   margin:auto;
   background:url('/img/paper.png');
   #early {
@@ -212,9 +213,16 @@ $soulmateWidth: $inputWidth + 21px;
 
 #documeds {
   position:absolute;
-  top:465px;
+  top:385px;
   left:50%;
-  margin-left:-111px;
+  margin-left:-121px;
   width:223px;
 }
-#github {width:400px;position:absolute;top:700px;left:50%;margin-left:-200px;color:#a4b0b7;}
+
+#github {
+  width:400px;
+  position:absolute;
+  top:630px;
+  left:50%;
+  margin-left:-200px;
+  color:#a4b0b7;}
