@@ -40,8 +40,7 @@
       [:div#top
         (if-not (sess/get :email)
           [:div#loggedout
-            [:a {:href "/login"} "Log In"] " "
-            [:a {:href "/signup"} "Sign Up"]]
+            [:a {:href "/login"} "Log In"]]
           [:div#loggedin
             [:a {:href "/logout"} "Log Out"]
             [:a {:href "/medications/letter/a"} "All Medications"]
@@ -72,9 +71,8 @@
       [:div#top
         (if-not (sess/get :email)
           [:div#loggedout
-            [:a {:href "/login"} "Log In"] " "
-            [:a {:href "/blog"} "Blog"]
-            [:a {:href "/blog"} "Twitter"]]
+            [:a {:href "#coming_soon"} "Blog"]
+            [:a {:href "http://twitter.com/documeds"} "Twitter"]]
           [:div#loggedin
             [:a {:href "/logout"} "Log Out"]
             [:a {:href "/medications/letter/a"} "All Medications"]
@@ -82,7 +80,7 @@
             [:div#name (sess/get :email)]])]
       [:div#landing
         [:div#logoBox
-          [:a {:href "#" :id "early"}]]
+          [:a {:href "#coming_soon" :id "early"}]]
         [:img {:src "/img/documeds.png" :id "documeds"}]
         [:div#github.small "Follow development on "
           [:a {:href "https://github.com/dmix/documeds"} "Github"]
