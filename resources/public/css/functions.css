@@ -1,0 +1,23 @@
+.spacer {
+  height: 1px;
+  clear: both; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.center {
+  text-align: center; }
+
+.small {
+  font-size: 0.9em; }
+
+.hide, .none {
+  display: none; }
+
+.btn {
+  font-size: 0.9em;
+  padding: 7px 15px 10px 15px;
+  font-weight: bold; }

@@ -20,7 +20,19 @@ javascripts:
     - resources/public/dusts/items/row.js
     - resources/public/dusts/autocomplete/result.js
 
+  production-landing:
+    - resources/public/assets/vendor/jquery.js
+    - resources/public/assets/vendor/underscore.js
+    - resources/public/assets/vendor/bootstrap-modals.js
+    - resources/public/assets/functions.js
+    - resources/public/assets/landing.js
+
 stylesheets:
   production:
     - resources/public/css/bootstrap.css
     - resources/public/css/app.css
+
+  production-landing:
+    - resources/public/css/bootstrap.css
+    - resources/public/css/app.css
+    

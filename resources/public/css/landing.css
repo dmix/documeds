@@ -303,3 +303,47 @@ label {
   left: 50%;
   margin-left: -200px;
   color: #a4b0b7; }
+
+#surveyForm {
+  text-align: left;
+  margin-top: 0px;
+  padding: 0px 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  overflow-y: auto; }
+  #surveyForm h4 #count {
+    display: inline; }
+  #surveyForm h4 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #5c5bb1;
+    margin-left: 28px; }
+  #surveyForm .num {
+    display: inline;
+    color: #ccc;
+    font-weight: bold;
+    float: left;
+    margin-right: 15px;
+    font-size: 1.3em;
+    margin-bottom: 30px; }
+  #surveyForm label {
+    font-weight: bold;
+    display: block;
+    font-size: 1.3em;
+    margin-bottom: 15px; }
+  #surveyForm .answer {
+    margin-left: 25px; }
+    #surveyForm .answer input {
+      width: 25px;
+      display: inline; }
+    #surveyForm .answer label {
+      font-weight: normal;
+      margin-bottom: 7px;
+      font-size: 0.9em;
+      margin-right: 10px;
+      background: #ffffeb;
+      border-radius: 5px;
+      padding: 5px; }
+    #surveyForm .answer label:hover {
+      background: #e0dfef;
+      cursor: pointer; }

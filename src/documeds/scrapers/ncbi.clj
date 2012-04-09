@@ -35,8 +35,6 @@
 (defn content-html [id, url-data, attribute]
   (first (html/select url-data [(keyword (str "#" id attribute))])))
 
-; (set-info (parse-info "http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0000928/"))
-
 (def attributes { :why "-why"
                   :how "-how"
                   :side_effects "-sideEffects"
@@ -64,7 +62,7 @@
       nil
       content)))
 
-; (parse-info "/pubmedhealth/PMH0000928/")
+; Example (parse-info "/pubmedhealth/PMH0000928/")
 (defn parse-info [url]
   (let [url-data (fetch-url (info-url url))
         med-name (parse-name url-data :.title)
@@ -79,6 +77,7 @@
               {(first attribute) parsed}))) 
           attributes)))))
 
+; Example (set-info (parse-info "http://www.ncbi.nlm.nih.gov/pubmedhealth/PMH0000928/"))
 (defn set-info [med]
   (medication/add! med))
 

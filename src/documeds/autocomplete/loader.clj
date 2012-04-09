@@ -6,10 +6,11 @@
 
 (defn store-index [prefix]
   "Store each prefix into master set"
+  (println (+ "Storing " prefix))
   @(@r [:sadd key-autocomplete prefix]))
 
 (defn store-kv [prefix id]
-  "Store key/value to redis ex 'clomate-index:probe id'"
+  "Store key/value to redis ex clomate-index:probe id"
   @(@r [:zadd (str key-autocomplete prefix) 0 id]))
 
 (defn create-index-for [med]

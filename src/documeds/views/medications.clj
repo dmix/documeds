@@ -13,9 +13,6 @@
 
 (defn email [] (sess/get :email))
 
-(defpage "/" {}
-  (layouts/landing))
-
 (pre-route "/medications*" []
   (cond  (not (sess/get :email)) (response/redirect "/login")))
 

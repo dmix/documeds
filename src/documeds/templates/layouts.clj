@@ -46,7 +46,6 @@
             [:a {:href "/medications/letter/a"} "All Medications"]
             [:a {:href ""} [:img {:src (str "/img/country/" (country) ".png")}]]
             [:div#name (sess/get :email)]])]
-      [:div#modal]
       [:div#wrapper
         (when-let [message (sess/flash-get)]
           [:div#flash message])
@@ -60,32 +59,6 @@
         content " "
         [:br]]
         (javascript-assets)]))
-
-(defpartial landing []
-  (html5
-    [:head
-      [:title "Medication Tracker | DocuMeds"]
-      (include-css "/css/bootstrap.css")
-      (include-css "/css/app.css")]
-    [:body
-      [:div#top
-        (if-not (sess/get :email)
-          [:div#loggedout
-            [:a {:href "#coming_soon"} "Blog"]
-            [:a {:href "http://twitter.com/documeds"} "Twitter"]]
-          [:div#loggedin
-            [:a {:href "/logout"} "Log Out"]
-            [:a {:href "/medications/letter/a"} "All Medications"]
-            [:a {:href ""} [:img {:src (str "/img/country/" (country) ".png")}]]
-            [:div#name (sess/get :email)]])]
-      [:div#landing
-        [:div#logoBox
-          [:a {:href "#coming_soon" :id "early"}]]
-        [:img {:src "/img/documeds.png" :id "documeds"}]
-        [:div#github.small "Follow development on "
-          [:a {:href "https://github.com/dmix/documeds"} "Github"]
-          " and updates on "
-          [:a {:href "https://github.com/dmix/documeds"} "Twitter"]]]]))
 
 (defn flash! [message]
   (sess/flash-put! message)

@@ -1,14 +1,13 @@
 (ns documeds.redis
   (:use [aleph.redis :only (redis-client)]))
 
-
 ; Redis Connection -----------------------------------------------
 (def redis-uri (get (System/getenv) "REDIS_URI"))
 (def redis-url (get (System/getenv) "REDIS_URL"))
 (def redis-port (Integer/parseInt (get (System/getenv) "REDIS_PORT")))
 (def redis-pass (get (System/getenv) "REDIS_PASS"))
 
-; (def l (delay (redis-client {:host "localhost"})))
+; (def r (delay (redis-client {:host "localhost"})))
 (def r (delay (redis-client {:host redis-url 
                              :password redis-pass 
                              :port redis-port})))
@@ -40,4 +39,15 @@
 
 (defn redis-has-key [redis-key]
   (= @(@r [:exists redis-key]) 1))
-  
+
+
+; Model Functions ---------------------------------------------------
+(defn string-keys-to-keywords [models]
+  (into {} 
+    (for [[k v] models] 
+      [(keyword k) v])))
+
+(defn keyword-keys-to-string [models]
+  (into {} 
+    (for [[k v] models] 
+      [(name k) v])))

@@ -20,6 +20,6 @@
   "Break up words in the given phrase and find prefixes for each word individually, 
   return single list of prefixes"
   (let [words (clojure.string/split (normalize phrase) #" ")]
-    (set 
+    (set
       (flatten 
         (map word-prefixes words)))))

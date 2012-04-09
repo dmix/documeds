@@ -1,0 +1,28 @@
+@import "app.scss";
+
+#surveyForm {
+  text-align:left;
+  margin-top:0px;
+  padding:0px 10px;
+  h4 #count {display:inline;}
+  h4 {font-size:1.3em;font-weight:bold;color:$purple;margin-left:28px;}
+  .num {display:inline;color:#ccc;font-weight:bold;float:left;margin-right:15px;font-size:1.3em;margin-bottom:30px;}
+  label {font-weight:bold;display:block;font-size:1.3em;margin-bottom:15px;}
+  .answer {
+    margin-left:25px;
+    input {width:25px;display:inline;}
+    label {
+      font-weight:normal;
+      margin-bottom:7px;
+      font-size:0.9em;
+      margin-right:10px;
+      background:#ffffeb;
+      border-radius:5px;
+      padding:5px;
+    }
+    label:hover {background:#e0dfef;cursor:pointer;}
+  }
+  padding-right:10px;
+  margin-bottom:20px;
+  overflow-y:auto;
+}

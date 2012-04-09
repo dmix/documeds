@@ -70,4 +70,4 @@
 (defpage "/logout" []
   (sess/remove! :email)
   (layouts/flash! "Logged out successfully!")
-  (response/redirect "/medications"))
+  (response/redirect "/medications"))[]

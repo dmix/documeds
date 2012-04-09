@@ -1,0 +1,48 @@
+// COMMON CLASSES ------------------------------------------
+.spacer {height:1px;clear:both;}
+.left {float:left;}
+.right {float:right;}
+.center {text-align:center;}
+.small {font-size:0.9em;}
+.hide, .none {display:none;}
+
+// BOOTSTRAP CHANGES ---------------------------------------
+.btn {font-size:0.9em;padding:7px 15px 10px 15px;font-weight:bold;}
+
+// MARCROS -------------------------------------------------
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+  -o-border-radius: $radius;
+	-khtml-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin box-shadow($horizontal-offset, $vertical-offset, $blur-radius, $color){
+  -webkit-box-shadow: $horizontal-offset $vertical-offset $blur-radius $color;
+  -moz-box-shadow: $horizontal-offset $vertical-offset $blur-radius $color;
+  -khtml-box-shadow: $horizontal-offset $vertical-offset $blur-radius $color;
+  -ms-box-shadow: $horizontal-offset $vertical-offset $blur-radius $color;
+  -o-box-shadow: $horizontal-offset $vertical-offset $blur-radius $color;
+  box-shadow:$horizontal-offset $vertical-offset $blur-radius $color;
+}
+
+@mixin vertical-gradient($top-color, $bottom-color){
+  background: $top-color;
+  background: -moz-linear-gradient(top, $top-color 0, $bottom-color 100%);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from($top-color), to($bottom-color));
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$top-color},endColorstr=#{$bottom-color})";
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$top-color},endColorstr=#{$bottom-color});
+}
+
+@mixin clearfix {
+  zoom: 1;
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
