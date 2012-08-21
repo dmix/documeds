@@ -9,7 +9,7 @@
 
 (defn -main [& m]
   (let [mode (or (first m) :dev)
-        port (Integer. (get (System/getenv) "PORT" "5000"))]
+        port (Integer. (get (System/getenv) "PORT" "8000"))]
     (server/start port {:mode (keyword mode)
                         :ns 'documeds})))
 
