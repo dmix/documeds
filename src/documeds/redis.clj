@@ -8,10 +8,10 @@
 (def redis-port (Integer/parseInt (get (System/getenv) "REDIS_PORT")))
 (def redis-pass (get (System/getenv) "REDIS_PASS"))
 
-; (def r (delay (redis-client {:host "localhost"})))
-(def r (delay (redis-client {:host redis-url 
-                             :password redis-pass 
-                             :port redis-port})))
+(def r (delay (redis-client {:host "localhost", :port "6379"})))
+; (def r (delay (redis-client {:host redis-url 
+;                              :password redis-pass 
+;                              :port redis-port})))
 
 
 ; Medication Model Keys --------------------------------------------
