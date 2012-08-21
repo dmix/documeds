@@ -24,14 +24,14 @@
                  "/css/landing.css")
     (include-css "/assets/production-landing.css")))
 
-(defpartial modal [header button & content]
-  [:div.modal-header
-    [:a {:class "close" :data-dismiss "modal"} "x"]
-    [:h3 header]]
-  [:div.modal-body content]
-  [:div.modal-footer
-    [:a {:href "#" :class "btn btn-primary"} button]
-    [:a {:href "#" :class "btn" :data-dismiss "modal"} "Close"]])
+; (defpartial modal [header button & content]
+;   [:div.modal-header
+;     [:a {:class "close" :data-dismiss "modal"} "x"]
+;     [:h3 header]]
+;   [:div.modal-body content]
+;   [:div.modal-footer
+;     [:a {:href "#" :class "btn btn-primary"} button]
+;     [:a {:href "#" :class "btn" :data-dismiss "modal"} "Close"]])
 
 (defpartial survey []
   [:div#surveyForm
@@ -125,8 +125,9 @@
       [:div#top
         (if-not (sess/get :email)
           [:div#loggedout
-            [:a {:href "/blog"} "Blog"]
-            [:a {:href "http://twitter.com/documeds"} "Twitter"]]
+            ; [:a {:href "/blog"} "Blog"]
+            ; [:a {:href "http://twitter.com/documeds"} "Twitter"]]
+          ]
           [:div#loggedin
             [:a {:href "/logout"} "Log Out"]
             [:a {:href "/medications/letter/a"} "All Medications"]
@@ -140,5 +141,5 @@
           [:a {:href "https://github.com/dmix/documeds"} "Github"]
           " and updates on "
           [:a {:href "https://github.com/dmix/documeds"} "Twitter"]]]
-      [:div#survey.modal.none (modal "Survey" "Next Question" (survey))]
+      ; [:div#survey.modal.none (modal "Survey" "Next Question" (survey))]
       (javascript-assets)]))

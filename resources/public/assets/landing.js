@@ -9,6 +9,4 @@
     init: {}
   };
 
-  $(function() {});
-
 }).call(this);

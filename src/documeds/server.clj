@@ -13,4 +13,4 @@
     (server/start port {:mode (keyword mode)
                         :ns 'documeds})))
 
-; lein run -m documeds.server :prod
+; lein run -m documeds.server :prod -d
