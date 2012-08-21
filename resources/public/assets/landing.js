@@ -1,3 +1,4 @@
+(function() {
 
   this.DocuMeds = {
     Views: {},
@@ -8,12 +9,6 @@
     init: {}
   };
 
-  $(function() {
-    $('#survey').modal({
-      backdrop: true,
-      show: true
-    });
-    return $('#early').click(function() {
-      return $('#survey').modal('show');
-    });
-  });
+  $(function() {});
+
+}).call(this);

@@ -21,7 +21,7 @@ Built with:
 
 ```bash
 lein deps
-lein run
+lein run -m documeds.server :prod
 ```
 
 Also run Redis on localhost, default port with no password.

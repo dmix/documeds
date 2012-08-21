@@ -147,11 +147,11 @@ class SuggestionCollection
 class Soulmate
 
   KEYCODES = {9: 'tab', 13: 'enter', 27: 'escape', 38: 'up', 40: 'down'}
-  
+
   constructor: (@input, options) ->
 
     that = this
-    
+
     {url, types, renderCallback, selectCallback, maxResults, minQueryLength, timeout} = options
 
     @url              = url

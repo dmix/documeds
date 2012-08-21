@@ -1,6 +1,7 @@
 (ns documeds.redis
   (:use [aleph.redis :only (redis-client)]))
 
+
 ; Redis Connection -----------------------------------------------
 (def redis-uri (get (System/getenv) "REDIS_URI"))
 (def redis-url (get (System/getenv) "REDIS_URL"))
