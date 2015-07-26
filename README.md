@@ -1,10 +1,10 @@
-f# documeds
+# [documeds](https://github.com/dmix/documeds)
 
 An application to assist people in finding the ideal medication stack for their health condition.
 
 ### Overview
 
-People often take multiple medications over the course of their illness. Various factors determine whether a drug is best for a person. Such as medication prices, how well the drug works, and seriousness of side-effects. As a result almost all treatments invole experimenting with different medications until a combination is found that works best. 
+People often take multiple medications over the course of their illness. Various factors determine whether a drug is best for a person. Such as how well the drug works, medication prices, and amount of side-effects caused. As a result almost all treatments invole experimenting with different medications until a combination is found that works best. 
 
 Documeds was created to make this process easier, to help narrow down what might work for you, and provide a secondary data-source - in addition to your doctor - regarding what your options are.
 
@@ -48,8 +48,6 @@ Also run Redis on localhost, default port with no password.
 
 ## License
 
-Developing in the open until full public launch later in the year.
+Code: GPLv2
 
-View online at https://documeds.com
-
-Copyright (C) 2012 Dan McGrady http://dmix.ca
+https://documeds.com - UI/written content Copyright (C) 2015 Dan McGrady https://dmix.ca
